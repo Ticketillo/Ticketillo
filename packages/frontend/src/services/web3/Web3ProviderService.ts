@@ -2,53 +2,47 @@ import { ethers } from "ethers";
 
 
 export class Web3ProviderService {
-    private static readonly metamaskConnector = new MetaMaskConnector();
-    private static readonly magicConnector = new MagicConnector({
-        chain: this.chain,
-        options: { apiKey: process.env.REACT_APP_MAGIC_LINK_API_KEY! },
-    });
-
-    static get provider(): Promise<ethers.BrowserProvider> {
+    static get provider(): ethers.BrowserProvider {
         if ((window as any).ethereum) {
             return new ethers.BrowserProvider((window as any).ethereum, "any");
         }
         throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async getConnectedAccount(): Promise<{ address: string; chain: number } | void> {
-        try {
-            const address = await this.wagmiService.getAccount();
-            const chain = await this.wagmiService.getChainId();
-            return {
-                address: address,
-                chain: chain,
-            };
-        } catch (e) {}
-    }
+    static async getConnectedAccount(): Promise<{ address: string; chain: bigint }> {
+        const ethereum = (window as any).ethereum;
 
-    static async connect(): Promise<{ address: string; chain: number }> {
-        try {
-            const data = await this.wagmiService.connect({ connector: this.metamaskConnector });
-            return {
-                address: data.account,
-                chain: data.chain.id,
-            };
-        } catch (e) {
-            if ((e as Error).message === "MetaMask is not ready") throw new Error(translate("METAMASK_NOT_INSTALLED"));
-            else throw new Error(translate("USER_REJECTED_METAMASK"));
+        if (ethereum) {
+            const provider = this.provider;
+            const signer = await provider.getSigner();
+            try {
+                return {
+                    address: await signer.getAddress(),
+                    chain: (await provider.getNetwork()).chainId,
+                };
+            } catch (e) {}
         }
+        throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async autoConnect(): Promise<{ address: string | undefined; chain: number | undefined }> {
-        const data = await this.wagmiService.autoConnect();
-        return {
-            address: data?.account,
-            chain: data?.chain.id,
-        };
-    }
+    static async connect(): Promise<{ address: string; chain: bigint }> {
+        const ethereum = (window as any).ethereum;
 
-    static async disconnect(): Promise<void> {
-        return this.wagmiService.disconnect();
+        if (ethereum) {
+            try {
+                const provider = this.provider;
+                await provider.send("eth_requestAccounts", []);
+                const signer = await provider.getSigner();
+                const network = await provider.getNetwork();
+                return {
+                    address: await signer.getAddress(),
+                    chain: network.chainId,
+                };
+            } catch (e) {
+                throw new Error("USER_REJECTED_METAMASK");
+            }
+        }
+        throw new Error("METAMASK_NOT_INSTALLED");
     }
 
     static addOnAccountChangeListener(callback: (accounts: string[]) => void): void {
