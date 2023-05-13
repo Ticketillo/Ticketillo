@@ -12,21 +12,6 @@ module.exports = {
                 "2xl": "1400px",
             },
         },
-        colors: {
-            fiord: {
-                50: "#f5f6fa",
-                100: "#ebedf3",
-                200: "#d2d9e5",
-                300: "#aab7cf",
-                400: "#7b90b5",
-                500: "#5b739c",
-                600: "#475b82",
-                700: "#394867",
-                800: "#334059",
-                900: "#2e374c",
-                950: "#1f2432",
-            },
-        },
         extend: {
             colors: {
                 border: "hsl(var(--border))",
@@ -61,6 +46,19 @@ module.exports = {
                 card: {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
+                },
+                fiord: {
+                    50: "#f5f6fa",
+                    100: "#ebedf3",
+                    200: "#d2d9e5",
+                    300: "#aab7cf",
+                    400: "#7b90b5",
+                    500: "#5b739c",
+                    600: "#475b82",
+                    700: "#394867",
+                    800: "#334059",
+                    900: "#2e374c",
+                    950: "#1f2432",
                 },
             },
             borderRadius: {
