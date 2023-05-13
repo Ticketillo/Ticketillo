@@ -7,7 +7,7 @@ import ProfilePage from "modules/profile/pages/ProfilePage";
 
 import Logo from "modules/home/components/Logo";
 import UserMenu from "modules/home/components/UserMenu";
-import EventPage from "modules/event/pages/PageEvent";
+import EventPage from "modules/event/pages/EventPage";
 
 const Routes = () => {
     return useRoutes([
