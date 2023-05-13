@@ -10,11 +10,11 @@ import { Calendar } from "components/calendar";
 
 interface DatePickerProps {
     label: string;
+    date: Date | undefined;
+    onDate: (date: Date | undefined) => void;
 }
 
-export default function DatePicker({ label }: DatePickerProps) {
-    const [date, setDate] = React.useState<Date>();
-
+export default function DatePicker({ label, date, onDate: setDate }: DatePickerProps) {
     return (
         <div className="flex flex-col gap-2">
             <p className="text-sm">{label}</p>

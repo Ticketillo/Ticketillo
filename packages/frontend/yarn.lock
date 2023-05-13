@@ -2302,6 +2302,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/google.maps@*":
+  version "3.53.1"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.53.1.tgz#c1fb7325eaa5af3574aedb9390d16798be0dad00"
+  integrity sha512-+7JVpq+kFzTU3TweSz6huYuFedZ4s60WeABaXYU6rDZczdpfoQ5DuZNCDc/eAAcdFJpxMMDpzf3d9YTMNodBFg==
+
 "@types/graceful-fs@^4.1.2":
   version "4.1.6"
   resolved "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.6.tgz"
@@ -2400,6 +2405,14 @@
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.10.tgz"
   integrity sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-places-autocomplete@^7.2.9":
+  version "7.2.9"
+  resolved "https://registry.yarnpkg.com/@types/react-places-autocomplete/-/react-places-autocomplete-7.2.9.tgz#5d1579f5b91b48a3bc56bc0b385b01aa516c8af4"
+  integrity sha512-N5892g3ocleoHsks7G5T9xdJ2kfRblg7yUKJQZ7nFKETIoAr/Gz/ZyogEbrkB1sEvWEJmn5FEYlMM++rZmQf8w==
+  dependencies:
+    "@types/google.maps" "*"
     "@types/react" "*"
 
 "@types/react-router-dom@^5.3.2":
@@ -2598,6 +2611,11 @@
   dependencies:
     "@typescript-eslint/types" "5.50.0"
     eslint-visitor-keys "^3.3.0"
+
+"@uiball/loaders@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@uiball/loaders/-/loaders-1.2.6.tgz#bd748a4538e16897daef6dec13dd4141efabd5c8"
+  integrity sha512-Db3be5pG9ciZa1Rxr6Iwv8bIwVP+g00m3GYQFsu3j7B9T16MpHhnGXLksuNtKlePdP3FCTFGpFrXbJz4GG/OOg==
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -7941,7 +7959,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.8.1:
+prop-types@^15.5.8, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8103,6 +8121,14 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-places-autocomplete@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-7.3.0.tgz#81a2345ae4a6fc35d7a712ccd4850d497553ba1b"
+  integrity sha512-86wcHC69JATvWBnIS/yCsBHLtwzOGcnx3Ye94u74yTrz1jLRC/txkVDkf6rvC+Jq3zNe/tAg/W53x0EaH1ZPPw==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    prop-types "^15.5.8"
 
 react-refresh@^0.11.0:
   version "0.11.0"
