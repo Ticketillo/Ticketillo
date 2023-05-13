@@ -22,8 +22,9 @@ export class EventService {
             creator_address: "",
             data: JSON.stringify({
                 description,
-                external_url,
-                image,
+                external_url: config.backendUrl,
+                image: fileUrl,
+                attributes: []
             }),
         });
 
@@ -36,7 +37,12 @@ export class EventService {
             address,
             name: name,
             creator_address: "",
-            data: JSON.stringify({}),
+            data: JSON.stringify({
+                description,
+                external_url: config.backendUrl,
+                image: fileUrl,
+                attributes: []
+            }),
         });
     }
 
