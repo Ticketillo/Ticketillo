@@ -27,7 +27,6 @@ const Routes = () => {
             path: "/profile",
             element: <ProfilePage />,
         },
-        ...eventRouter,
         {
             path: "/event/:id",
             element: <EventPage />,
