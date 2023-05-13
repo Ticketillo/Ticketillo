@@ -34,7 +34,7 @@ export default function ProfilePage() {
                             <AvatarImage src={`https://avatar.vercel.sh/12312.png`} alt="user-avatar" />
                             <AvatarFallback>SC</AvatarFallback>
                         </Avatar>
-                        John Doe
+                        {authState.address}
                     </CardTitle>
                 </CardHeader>
                 <form>

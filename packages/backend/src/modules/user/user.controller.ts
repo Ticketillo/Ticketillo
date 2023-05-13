@@ -35,7 +35,7 @@ export class UserController {
     @Get("/:address")
     @ApiOperation({ description: "Get an user" })
     async getUser(@Param("address") address: string): Promise<UserDto> {
-        let user = await this.userRepository.findOne({ where: { address }, relations: ["event"] });
+        let user = await this.userRepository.findOne({ where: { address }, relations: ["events"] });
         if (!user) {
             user = await this.userRepository.save({
                 address,
@@ -50,7 +50,7 @@ export class UserController {
     @Get("")
     @ApiOperation({ description: "Get all users" })
     async getAll(): Promise<UserDto[]> {
-        const users = await this.userRepository.find({ relations: ["event"] });
+        const users = await this.userRepository.find({ relations: ["events"] });
         return users.map((user) => UserDto.fromEntity(user));
     }
 }
