@@ -1,0 +1,15 @@
+{
+    "baseUrl": "http://localhost:8182",
+    "integrationFolder": "test/e2e",
+    "pluginsFile": "test/config/plugins/index.js",
+    "supportFile": "test/config/support/index.ts",
+    "fixturesFolder": "test/config/fixtures",
+    "screenshotsFolder": "test/config/screenshots",
+    "videosFolder": "test/config/videos",
+    "downloadsFolder": "test/config/downloads",
+    "screenshotOnRunFailure": false,
+    "video": false,
+    "viewportHeight": 1080,
+    "viewportWidth": 1920,
+    "env": {}
+}
