@@ -6,6 +6,7 @@ import { Repository } from "typeorm";
 import { User } from "src/database/entities/User";
 import { EditUserRequest } from "./edit-user.request";
 import { UserDto } from "./user.dto";
+import generateName from "./name-generator/generate-name";
 
 @ApiTags("user")
 @Controller("user")
@@ -31,17 +32,25 @@ export class UserController {
         return this.getUser(request.address);
     }
 
-    @Get(":address")
+    @Get("/:address")
     @ApiOperation({ description: "Get an user" })
     async getUser(@Param("address") address: string): Promise<UserDto> {
-        const user = await this.userRepository.findOne({ where: { address }, relations: ["event"] });
+        let user = await this.userRepository.findOne({ where: { address }, relations: ["events"] });
+        if (!user) {
+            user = await this.userRepository.save({
+                address,
+                name: generateName(),
+                description: "",
+                image: "https://picsum.photos/200/300",
+            })
+        }
         return UserDto.fromEntity(user);
     }
 
     @Get("")
     @ApiOperation({ description: "Get all users" })
     async getAll(): Promise<UserDto[]> {
-        const users = await this.userRepository.find({ relations: ["event"] });
+        const users = await this.userRepository.find({ relations: ["events"] });
         return users.map((user) => UserDto.fromEntity(user));
     }
 }

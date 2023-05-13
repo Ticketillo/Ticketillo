@@ -6,6 +6,8 @@ import { ConfigEnvType, getConfigEnv } from "../../config/util/config.utils";
 import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 import getByEnv, { events } from "./seeders-data/Events";
 import { Event } from "../entities/Event";
+import { User } from "../entities/User";
+import { users } from "./seeders-data/User";
 
 export interface SeederAdapterI {
     insert<T>(entityTarget: EntityTarget<T>, data: QueryDeepPartialEntity<T>[]): Promise<void>;
@@ -29,7 +31,6 @@ export class Seeder {
 
     async connect(): Promise<void> {
         this.connection = await ConnectionSource.initialize();
-        await this.connection.initialize();
         this.adapter = new TypeORMSeederAdapter(this.connection);
         this.logger.log("Connected to database successfully!");
     }
@@ -60,9 +61,11 @@ export class Seeder {
 
     async deleteAll(): Promise<void> {
         await this.adapter.delete(Event);
+        await this.adapter.delete(User);
     }
 
     async insertAll(): Promise<void> {
+        await this.adapter.insert(User, users);
         await this.adapter.insert(Event, events);
     }
 }

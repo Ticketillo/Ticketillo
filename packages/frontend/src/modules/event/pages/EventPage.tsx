@@ -1,15 +1,17 @@
 import { useParams } from "react-router-dom";
 import useGetEvent from "../query/useGetEvent";
-import { MapPin, Users, UserPlus, Calendar, Ticket, Frown } from "lucide-react";
+import { MapPin, Users, UserPlus, Calendar, Frown, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Progress } from "components/progress";
-import { Button } from "components/button";
+
 import { utils } from "ethers";
 import { Card, CardTitle } from "components/card";
 import useGetSimilarEvents from "../query/useGetSimilarEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "components/tooltip";
 import { Skeleton } from "components/skeleton";
 import EventCard from "../components/EventCard/EventCard";
+import BuyTicketModal from "../components/BuyTicketModal/BuyTicketModal";
+import { Button } from "components/button";
 
 export default function EventPage() {
     const { id } = useParams();
@@ -140,34 +142,10 @@ export default function EventPage() {
                         )}
                         {loading ? (
                             <Skeleton>
-                                <Button className="w-full opacity-0" disabled={progress === 100}>
-                                    {progress < 100 ? (
-                                        <div className="flex gap-2 items-center">
-                                            <Ticket size="1.25rem" />
-                                            <span>Get a ticket!</span>
-                                        </div>
-                                    ) : (
-                                        <div className="flex gap-2 items-center">
-                                            <Frown size="1.25rem" />
-                                            <span>Sold Out</span>
-                                        </div>
-                                    )}
-                                </Button>
+                                <BuyTicketModal progress={progress} event={event} />
                             </Skeleton>
                         ) : (
-                            <Button className="w-full" disabled={progress === 100}>
-                                {progress < 100 ? (
-                                    <div className="flex gap-2 items-center">
-                                        <Ticket size="1.25rem" />
-                                        <span>Get a ticket!</span>
-                                    </div>
-                                ) : (
-                                    <div className="flex gap-2 items-center">
-                                        <Frown size="1.25rem" />
-                                        <span>Sold Out</span>
-                                    </div>
-                                )}
-                            </Button>
+                            <BuyTicketModal progress={progress} event={event} />
                         )}
                     </div>
                 </div>

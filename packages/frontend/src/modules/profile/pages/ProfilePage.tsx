@@ -6,13 +6,25 @@ import { Label } from "components/label";
 import { Input } from "components/input";
 import { Textarea } from "components/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "components/avatar";
+import { UserApi } from "../../../api/service";
+import { useAuthState } from "../../auth/state";
+import { useQueryClient } from "@tanstack/react-query";
+import { uploadFile } from "../../../api/service/helper/uploadFile";
 
 export default function ProfilePage() {
     const { register, handleSubmit } = useForm();
+    const authState = useAuthState();
+    const qc = useQueryClient();
 
-    const onSubmit = (data: any) => {
-        // edit user information
-        console.log(data);
+    const onSubmit = async (data: any) => {
+        const url = await uploadFile(data.avatar[0], "image");
+        await UserApi.createEvent({
+            address: authState.address!,
+            name: data.name,
+            description: data.description,
+            image: url,
+        });
+        await qc.invalidateQueries(["user"]);
     };
 
     return (
@@ -24,7 +36,7 @@ export default function ProfilePage() {
                             <AvatarImage src={`https://avatar.vercel.sh/12312.png`} alt="user-avatar" />
                             <AvatarFallback>SC</AvatarFallback>
                         </Avatar>
-                        John Doe
+                        {authState.address}
                     </CardTitle>
                 </CardHeader>
                 <form>

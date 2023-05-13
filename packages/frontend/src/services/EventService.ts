@@ -31,9 +31,11 @@ export class EventService {
         seatPrice: string,
     ): Promise<EventDto> {
         const fileUrl = await uploadFile(image, "image");
+        const provider = await Web3ProviderService.provider;
+        const signer = await provider.getSigner();
         const eventDto = await EventApi.createEvent({
             name: name,
-            creator_address: "",
+            creator_address: await signer.getAddress(),
             data: JSON.stringify({
                 description,
                 external_url: config.backendUrl,
@@ -43,14 +45,13 @@ export class EventService {
         });
 
         const metadataUrl = config.backendUrl + "/event/" + eventDto.id;
-        const provider = await Web3ProviderService.provider;
-        const signer = await provider.getSigner();
         const Ticket = new Ticket__factory(signer);
         const ticket = await Ticket.deploy(metadataUrl, seats, seatPrice, name, "TKT", "0x0000000000000000000000000000000000000000");
         const address = ticket.address;
 
         return EventApi.createEvent({
             address,
+            id: eventDto.id,
             name: name,
             creator_address: await signer.getAddress(),
             data: JSON.stringify({

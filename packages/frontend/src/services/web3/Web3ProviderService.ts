@@ -33,7 +33,6 @@ export class Web3ProviderService {
                 const provider = this.provider;
                 await provider.send("eth_requestAccounts", []);
                 const signer = await provider.getSigner();
-                const network = await provider.getNetwork();
                 return {
                     address: await signer.getAddress(),
                 };

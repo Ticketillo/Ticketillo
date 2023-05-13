@@ -1,15 +1,20 @@
 import * as React from "react";
 import { User, ChevronsUpDown, Ticket } from "lucide-react";
+import { useAuthState } from "modules/auth/state";
 
 import { Avatar, AvatarFallback, AvatarImage } from "components/avatar";
 import { Button } from "components/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "components/dropdown-menu";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useGetUser from "modules/event/query/useGetUser";
 
 export default function SpaceSwitcher() {
     const [open, setOpen] = React.useState(false);
 
     const navigate = useNavigate();
+    const { address } = useAuthState();
+
+    const { data } = useGetUser(address);
 
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -26,7 +31,7 @@ export default function SpaceSwitcher() {
                         <AvatarImage src={`https://avatar.vercel.sh/12312.png`} alt="user-avatar" />
                         <AvatarFallback>SC</AvatarFallback>
                     </Avatar>
-                    John Doe
+                    <p className="truncate">{data?.address}</p>
                     <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </DropdownMenuTrigger>
@@ -36,9 +41,9 @@ export default function SpaceSwitcher() {
                         <User className="mr-2 h-4 w-4" />
                         My profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => navigate("/your-events")}>
+                    <DropdownMenuItem onSelect={() => navigate("/tickets")}>
                         <Ticket className="mr-2 h-4 w-4" />
-                        My events
+                        My tickets
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
             </DropdownMenuContent>
