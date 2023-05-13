@@ -1,17 +1,14 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { config } from "config";
-
 import HomePage from "modules/home/pages/HomePage";
 import ProfilePage from "modules/profile/pages/ProfilePage";
-
 import Logo from "modules/home/components/Logo";
 import UserMenu from "modules/home/components/UserMenu";
 import EventPage from "modules/event/pages/EventPage";
 
 import MyEventsPage from "modules/event/pages/MyEventsPage";
 import DiscoverPage from "modules/event/pages/DiscoverPage";
-import LoggedInRoute from "modules/auth/components/LoggedInRoute";
 
 const Routes = () => {
     return useRoutes([

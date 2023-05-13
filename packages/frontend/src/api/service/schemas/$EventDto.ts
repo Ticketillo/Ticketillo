@@ -37,8 +37,12 @@ export const $EventDto = {
             },
             isRequired: true,
         },
+        seats: {
+            type: 'number',
+            isRequired: true,
+        },
         user: {
-            type: 'User',
+            type: 'UserDto',
         },
     },
 } as const;

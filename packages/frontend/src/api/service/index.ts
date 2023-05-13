@@ -11,7 +11,6 @@ export { $CreateEventRequest } from './schemas/$CreateEventRequest';
 export { $EditUserRequest } from './schemas/$EditUserRequest';
 export { $EventAttributeDto } from './schemas/$EventAttributeDto';
 export { $EventDto } from './schemas/$EventDto';
-export { $User } from './schemas/$User';
 export { $UserDto } from './schemas/$UserDto';
 
 export { EventApi } from './services/EventApi';

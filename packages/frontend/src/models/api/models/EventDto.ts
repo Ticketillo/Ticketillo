@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import type { EventAttributeDto } from './EventAttributeDto';
-import type { User } from './User';
+import type { UserDto } from './UserDto';
 
 export type EventDto = {
     id: number;
@@ -14,6 +14,7 @@ export type EventDto = {
     external_url: string;
     image: string;
     attributes: Array<EventAttributeDto>;
-    user?: User;
+    seats: number;
+    user?: UserDto;
 };
 
