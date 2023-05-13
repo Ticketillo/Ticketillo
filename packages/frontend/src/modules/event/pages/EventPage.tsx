@@ -8,6 +8,7 @@ import { utils } from "ethers";
 import { Card, CardTitle } from "components/card";
 import useGetSimilarEvents from "../query/useGetSimilarEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "components/tooltip";
+import { EventService } from "../../../services/EventService";
 
 export default function EventPage() {
     const { id } = useParams();
