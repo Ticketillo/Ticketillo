@@ -2,14 +2,14 @@ import { ethers } from "ethers";
 
 
 export class Web3ProviderService {
-    static get provider(): ethers.BrowserProvider {
+    static get provider(): ethers.providers.Web3Provider {
         if ((window as any).ethereum) {
-            return new ethers.BrowserProvider((window as any).ethereum, "any");
+            return new ethers.providers.Web3Provider((window as any).ethereum, "any");
         }
         throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async getConnectedAccount(): Promise<{ address: string; chain: bigint }> {
+    static async getConnectedAccount(): Promise<{ address: string; chain: number }> {
         const ethereum = (window as any).ethereum;
 
         if (ethereum) {
@@ -18,14 +18,14 @@ export class Web3ProviderService {
             try {
                 return {
                     address: await signer.getAddress(),
-                    chain: (await provider.getNetwork()).chainId,
+                    chain: provider.network.chainId,
                 };
             } catch (e) {}
         }
         throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async connect(): Promise<{ address: string; chain: bigint }> {
+    static async connect(): Promise<{ address: string; chain: number }> {
         const ethereum = (window as any).ethereum;
 
         if (ethereum) {
