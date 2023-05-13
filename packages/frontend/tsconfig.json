@@ -17,7 +17,8 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "baseUrl": "src",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false
     },
     "include": ["src", "OpenApiConfig.ts"]
 }
