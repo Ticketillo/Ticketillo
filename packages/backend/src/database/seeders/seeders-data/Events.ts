@@ -11,6 +11,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -23,6 +24,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -35,6 +37,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -47,6 +50,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -59,6 +63,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -71,6 +76,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -83,6 +89,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -95,6 +102,7 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
     {
@@ -107,10 +115,11 @@ export const events: Event[] = [
             description: "Tomorrowland is the biggest electronic music festival in the world.",
             location: "Boom, Belgium",
             seats: 10000,
+            price: "2000000000000000000000",
         }),
     },
 ];
 
-export default function getByEnv(env: string) {
+export default function getByEnv(_env: string) {
     return events;
 }

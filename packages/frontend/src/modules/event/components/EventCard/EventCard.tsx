@@ -3,6 +3,7 @@ import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } 
 import { Skeleton } from "components/skeleton";
 import { useNavigate } from "react-router-dom";
 import ConditionalLink from "router/components/ConditionalLink/ConditionalLink";
+import { utils } from "ethers";
 
 export interface EventCardProps {
     id: number;
@@ -11,9 +12,10 @@ export interface EventCardProps {
     description: string;
     imgUrl: string;
     loading?: boolean;
+    price: string;
 }
 
-const EventCard = ({ id, name, description, creator, imgUrl, loading }: EventCardProps): JSX.Element => {
+const EventCard = ({ id, name, description, creator, imgUrl, loading, price }: EventCardProps): JSX.Element => {
     const navigation = useNavigate();
 
     return (
@@ -46,7 +48,7 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading }: EventCar
                                 <div className="hover:opacity-100 flex items-center justify-center rounded-md border-fiord-500 p-1 border-2">
                                     <p className="text-sm text-fiord-500">Available</p>
                                 </div>
-                                <p className="text-fiord-500 font-semibold">1500 $</p>
+                                <p className="text-fiord-500 font-semibold">{utils.formatEther(price)} ETH</p>
                             </div>
                         </div>
                     </Card>

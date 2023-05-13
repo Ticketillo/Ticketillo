@@ -21,6 +21,7 @@ export default function MyEventsPage() {
                         creator={event.creator}
                         description={event.description}
                         imgUrl={event.image}
+                        price={"0"}
                     />
                 ))
             )}

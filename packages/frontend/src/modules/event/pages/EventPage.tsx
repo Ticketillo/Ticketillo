@@ -199,7 +199,7 @@ export default function EventPage() {
                                 ? [...Array(4)].map((_, i) => (
                                       <Skeleton key={i}>
                                           <span className="opacity-0">
-                                              <EventCard key={i} id={1} name={"."} description={"."} creator={"."} imgUrl={"."} />
+                                              <EventCard key={i} id={1} name={"."} description={"."} creator={"."} imgUrl={"."} price="0" />
                                           </span>
                                       </Skeleton>
                                   ))
@@ -211,6 +211,7 @@ export default function EventPage() {
                                           description={similarEvent.description}
                                           creator={similarEvent.user!.name}
                                           imgUrl={similarEvent.image}
+                                          price={similarEvent.price}
                                       />
                                   ))}
                         </div>

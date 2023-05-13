@@ -21,6 +21,7 @@ export default function DiscoverPage() {
                         creator={event.user!.name}
                         description={event.description}
                         imgUrl={event.image}
+                        price={event.price}
                     />
                 ))
             )}
