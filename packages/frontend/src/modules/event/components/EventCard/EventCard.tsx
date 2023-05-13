@@ -48,7 +48,7 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading, price }: E
                                 <div className="hover:opacity-100 flex items-center justify-center rounded-md border-fiord-500 p-1 border-2">
                                     <p className="text-sm text-fiord-500">Available</p>
                                 </div>
-                                <p className="text-fiord-500 font-semibold">{utils.formatEther(price)} ETH</p>
+                                <p className="text-fiord-500 font-semibold">{utils.formatEther(price)} MATIC</p>
                             </div>
                         </div>
                     </Card>

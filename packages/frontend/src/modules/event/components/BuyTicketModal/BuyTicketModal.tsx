@@ -65,7 +65,7 @@ const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
                     <Card className="p-4 flex flex-col gap-1">
                         <p className="text-sm font-medium opacity-60">Price</p>
                         <CardTitle className="text-2xl font-bold">
-                            {event?.seatPrice ? Number(utils.formatEther(event?.seatPrice)).toLocaleString() : 0} ETH
+                            {event?.seatPrice ? Number(utils.formatEther(event?.seatPrice)).toLocaleString() : 0} MATIC
                         </CardTitle>
                     </Card>
                 </div>
@@ -74,7 +74,7 @@ const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
                         Cancel
                     </Button>
                     <Button variant="default" onClick={handleBuy}>
-                        {isLoading ? <Ring /> : "Confirm"}
+                        {isLoading ? <Ring color="white" /> : "Confirm"}
                     </Button>
                 </DialogFooter>
             </DialogContent>
