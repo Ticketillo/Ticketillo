@@ -7,8 +7,7 @@ interface EventCreateParams {
     description: string;
     attendees: number;
     image: File;
-    price: number;
-    location: string;
+    price: string;
 }
 
 export default function useCreateEvent() {

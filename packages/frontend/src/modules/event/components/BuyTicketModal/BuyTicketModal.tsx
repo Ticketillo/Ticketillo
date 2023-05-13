@@ -1,3 +1,4 @@
+import { Ring } from "@uiball/loaders";
 import { Button } from "components/button";
 import { Card, CardTitle } from "components/card";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "components/dialog";
@@ -15,7 +16,7 @@ interface BuyTicketModalProps {
 const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
     const [open, setOpen] = useState(false);
 
-    const { mutate: buyTicket } = useBuyTicket();
+    const { mutate: buyTicket, isLoading } = useBuyTicket();
 
     const handleBuy = () => {
         const { boughtSeats: _boughtSeats, seatPrice, ...eventRest } = event!;
@@ -57,7 +58,7 @@ const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
                         Cancel
                     </Button>
                     <Button variant="default" onClick={handleBuy}>
-                        Confirm
+                        {isLoading ? <Ring /> : "Confirm"}
                     </Button>
                 </DialogFooter>
             </DialogContent>
