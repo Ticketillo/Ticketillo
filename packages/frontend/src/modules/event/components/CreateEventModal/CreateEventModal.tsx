@@ -56,7 +56,7 @@ const CreateEventModal = () => {
     const [date, setDate] = useState<Date>();
     const [price, setPrice] = useState<number>(0);
     const [image, setImage] = useState<FileList>();
-    const [location, setLocation] = useState<string>();
+    const [location, setLocation] = useState<string>("");
 
     const { mutate: createEvent } = useCreateEvent();
 
@@ -67,6 +67,7 @@ const CreateEventModal = () => {
             attendees,
             price,
             image: image![0],
+            location,
         };
         createEvent(data, { onSuccess: () => setOpenModal(false) });
     };
