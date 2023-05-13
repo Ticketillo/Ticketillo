@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useGetEvent from "../query/useGetEvent";
-import { MapPin, Users, UserPlus, Calendar, Frown, Ticket } from "lucide-react";
+import { MapPin, Users, UserPlus, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Progress } from "components/progress";
 
@@ -8,9 +8,9 @@ import { utils } from "ethers";
 import { Card, CardTitle } from "components/card";
 import useGetSimilarEvents from "../query/useGetSimilarEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "components/tooltip";
-import { Button } from "components/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "components/dialog";
+
 import { useState } from "react";
+import BuyTicketModal from "../components/BuyTicketModal/BuyTicketModal";
 
 export default function EventPage() {
     const { id } = useParams();
@@ -74,38 +74,7 @@ export default function EventPage() {
                             </div>
                             <Progress value={progress} />
                         </div>
-                        <Dialog open={open} defaultOpen={false} onOpenChange={() => setOpen(false)}>
-                            <DialogTrigger>
-                                <Button className="w-full" disabled={progress === 100} onClick={() => setOpen(true)}>
-                                    {progress < 100 ? (
-                                        <div className="flex gap-2 items-center">
-                                            <Ticket size="1.25rem" />
-                                            <span>Get a ticket!</span>
-                                        </div>
-                                    ) : (
-                                        <div className="flex gap-2 items-center">
-                                            <Frown size="1.25rem" />
-                                            <span>Sold Out</span>
-                                        </div>
-                                    )}
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Buy this ticket</DialogTitle>
-                                    <DialogDescription>Confirm this action to buy a ticket for this event.</DialogDescription>
-                                </DialogHeader>
-                                <div className="flex flex-col w-full">Accept message</div>
-                                <DialogFooter>
-                                    <Button variant="outline" onClick={() => setOpen(false)}>
-                                        Cancel
-                                    </Button>
-                                    <Button variant="default" onClick={() => undefined}>
-                                        Confirm
-                                    </Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
+                        <BuyTicketModal progress={progress} event={event} />
                     </div>
                 </div>
             </div>
