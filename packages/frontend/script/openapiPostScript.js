@@ -3,7 +3,7 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
 
-const apiServicesFolder = "./src/services/";
+const apiServicesFolder = "./src/api/service/services/";
 
 function main() {
     const filenames = fs.readdirSync(apiServicesFolder);

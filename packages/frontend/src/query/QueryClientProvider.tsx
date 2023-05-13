@@ -1,8 +1,13 @@
 import { PropsWithChildren } from "react";
 import { QueryClient, QueryClientProvider as BaseQueryClientProvider } from "@tanstack/react-query";
+import { toast } from "components/use-toast";
 
-function handleQueryClientError(_error: any): void {
-    // Show error toast
+function handleQueryClientError(): void {
+    toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+    });
 }
 
 const queryClient = new QueryClient({

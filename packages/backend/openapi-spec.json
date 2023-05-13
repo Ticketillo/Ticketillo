@@ -1,8 +1,1 @@
-{
-    "openapi": "3.0.0",
-    "paths": {},
-    "info": {},
-    "tags": [],
-    "servers": [],
-    "components": {}
-}
+{"openapi":"3.0.0","paths":{},"info":{"title":"backend","description":"Base backend API","version":"0.0.0","contact":{}},"tags":[],"servers":[],"components":{"securitySchemes":{"bearer":{"scheme":"bearer","bearerFormat":"JWT","type":"http"}},"schemas":{}}}

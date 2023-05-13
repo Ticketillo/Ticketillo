@@ -19,5 +19,5 @@
         "baseUrl": "src",
         "experimentalDecorators": true
     },
-    "include": ["src"]
+    "include": ["src", "OpenApiConfig.ts"]
 }

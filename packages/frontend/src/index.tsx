@@ -2,9 +2,11 @@ import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import Providers from "Providers";
 import Router from "router/Router";
-import { useLoad } from "ui/common/hooks/useLoad";
-import "data-access/api/OpenApiConfig";
+import "OpenApiConfig";
 import "polyfills";
+import useLoad from "hooks/useLoad";
+
+import "./styles/globals.css";
 
 const App = (): JSX.Element | null => {
     const loading = useLoad();

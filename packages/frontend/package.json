@@ -4,11 +4,11 @@
     "private": true,
     "scripts": {
         "prebuild": "rimraf build",
-        "start": "npm run generate && craco start",
+        "start": "craco start",
         "build": "craco build",
         "eject": "craco eject",
         "generate": "npm run generate:openapi && npm run generate:icons && npm run generate:images",
-        "generate:icons": "node script/iconGenerator.js src/assets/icons/ src/components/icons/",
+        "generate:icons": "node script/iconGenerator.js src/assets/icons/ src/icons/",
         "generate:images": "node script/imagesGenerator.js src/assets/images/",
         "generate:openapi:services": "openapi -i ../backend/openapi-spec.json -o src/api/service --exportSchemas=true --exportModels=false --useUnionTypes --postfix=Api",
         "generate:openapi:models": "openapi -i ../backend/openapi-spec.json -o src/models/api --exportSchemas=false --useUnionTypes  --exportServices=false --exportCore=false",
@@ -18,6 +18,7 @@
     "dependencies": {
         "@craco/craco": "^7.0.0",
         "@radix-ui/react-avatar": "^1.0.2",
+        "@radix-ui/react-toast": "^1.1.3",
         "@tanstack/react-query": "^4.28.0",
         "class-variance-authority": "^0.6.0",
         "clsx": "^1.2.1",

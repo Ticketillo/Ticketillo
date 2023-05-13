@@ -1,26 +1,32 @@
-import { ModalProvider } from "@peersyst/react-components";
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { config } from "common/config";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import Header from "../common/components/navigation/Header/Header";
-import Footer from "../common/components/navigation/Footer/Footer";
-import { useCounterRoutes } from "ui/counter/router/CounterRouter";
+import { config } from "config";
+
+import HomePage from "modules/home/pages/HomePage";
+
+import Logo from "modules/home/components/Logo";
+import UserMenu from "modules/home/components/UserMenu";
 
 const Routes = () => {
-    const dashboardRoutes = useCounterRoutes();
-
-    return useRoutes([...dashboardRoutes]);
+    return useRoutes([
+        {
+            path: "/",
+            element: <HomePage />,
+        },
+    ]);
 };
 
 const Router = (): JSX.Element => {
     return (
         <BrowserRouter basename={config.publicUrl}>
-            <ModalProvider>
-                <ScrollToTop />
-                <Header />
+            <ScrollToTop />
+            <main className="sm:mx-auto flex w-full max-w-5xl flex-col items-start p-5">
+                <header className="flex items-center justify-between w-full">
+                    <Logo />
+                    <UserMenu />
+                </header>
                 <Routes />
-                <Footer />
-            </ModalProvider>
+            </main>
         </BrowserRouter>
     );
 };

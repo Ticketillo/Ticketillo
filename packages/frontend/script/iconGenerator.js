@@ -28,16 +28,14 @@ const svgs = [];
  * @returns {string} Icon component's code
  */
 function generateComponent(name, data, removeFill) {
-    return `import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
+    return `import { Icon, IconProps } from "components/icon";
 import clsx from "clsx";
 
-export default function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, "children">): JSX.Element {
+export default function ${name}Icon ({ className, ...rest }: Omit<IconProps, "children">): JSX.Element {
     return (
-        <SvgIcon {...rest} data-testid="${name}Icon" className={clsx(${
-        removeFill ? undefined : '"Filled"'
-    }, "Icon", className)} fill="none">
+        <Icon {...rest} data-testid="${name}Icon" className={clsx(${removeFill ? undefined : '"Filled"'}, "Icon", className)} fill="none">
             ${data}
-        </SvgIcon>
+        </Icon>
     )
 }
         `;
