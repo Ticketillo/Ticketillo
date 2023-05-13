@@ -3,6 +3,7 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { config } from "config";
 
 import HomePage from "modules/home/pages/HomePage";
+import { eventRouter } from "modules/event/EventRouter";
 
 const Routes = () => {
     return useRoutes([
@@ -10,6 +11,7 @@ const Routes = () => {
             path: "/",
             element: <HomePage />,
         },
+        ...eventRouter,
     ]);
 };
 
