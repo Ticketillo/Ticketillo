@@ -41,6 +41,7 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
+                price: seatPrice,
                 attributes: [{
                     trait_type: "location",
                     value: location,
