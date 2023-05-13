@@ -14,7 +14,7 @@ export default function TabsNavigation({ className }: React.HTMLAttributes<HTMLE
                     <Link
                         to="/discover"
                         className={cn(
-                            "text-sm font-medium transition-colors hover:text-primary",
+                            "font-medium transition-colors hover:text-primary",
                             location.pathname === "/discover" || location.pathname === "/"
                                 ? "text-primary font-semibold"
                                 : "text-muted-foreground",
@@ -22,17 +22,19 @@ export default function TabsNavigation({ className }: React.HTMLAttributes<HTMLE
                     >
                         Discover
                     </Link>
-                    <Link
-                        to="/your-events"
-                        className={cn(
-                            "text-sm font-medium transition-colors hover:text-primary",
-                            location.pathname === "/your-events" ? "text-primary font-semibold" : "text-muted-foreground",
-                        )}
-                    >
-                        Your events
-                    </Link>
+                    {isLoggedIn && (
+                        <Link
+                            to="/your-events"
+                            className={cn(
+                                "font-medium transition-colors hover:text-primary",
+                                location.pathname === "/your-events" ? "text-primary font-semibold" : "text-muted-foreground",
+                            )}
+                        >
+                            Your events
+                        </Link>
+                    )}
                 </div>
-                <CreateEventModal />
+                {isLoggedIn && <CreateEventModal />}
             </div>
         </nav>
     );
