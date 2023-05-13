@@ -4,6 +4,7 @@ export class CreateEventRequest {
     @ApiProperty({
         name: "id",
         type: "number",
+        required: false,
     })
     id?: number;
 
@@ -17,6 +18,7 @@ export class CreateEventRequest {
     @ApiProperty({
         name: "address",
         type: "string",
+        required: false,
     })
     address?: string;
 

@@ -7,6 +7,8 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export { $ApiException } from './schemas/$ApiException';
+export { $CreateEventRequest } from './schemas/$CreateEventRequest';
+export { $EditUserRequest } from './schemas/$EditUserRequest';
 export { $EventAttributeDto } from './schemas/$EventAttributeDto';
 export { $EventDto } from './schemas/$EventDto';
 export { $UserDto } from './schemas/$UserDto';

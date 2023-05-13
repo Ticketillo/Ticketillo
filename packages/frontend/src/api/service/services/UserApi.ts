@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { EditUserRequest } from "models";
 import type { UserDto } from "models";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -10,13 +11,16 @@ import { request as __request } from "../core/request";
 export class UserApi {
     /**
      * Create an event
+     * @param requestBody
      * @returns UserDto
      * @throws ApiError
      */
-    public static createEvent(): CancelablePromise<UserDto> {
+    public static createEvent(requestBody: EditUserRequest): CancelablePromise<UserDto> {
         return __request(OpenAPI, {
             method: "POST",
             url: "/api/user",
+            body: requestBody,
+            mediaType: "application/json",
         });
     }
 

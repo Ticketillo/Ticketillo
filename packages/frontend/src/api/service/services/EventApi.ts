@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { CreateEventRequest } from "models";
 import type { EventDto } from "models";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -10,13 +11,16 @@ import { request as __request } from "../core/request";
 export class EventApi {
     /**
      * Create an event
+     * @param requestBody
      * @returns EventDto
      * @throws ApiError
      */
-    public static createEvent(): CancelablePromise<EventDto> {
+    public static createEvent(requestBody: CreateEventRequest): CancelablePromise<EventDto> {
         return __request(OpenAPI, {
             method: "POST",
             url: "/api/event",
+            body: requestBody,
+            mediaType: "application/json",
         });
     }
 
