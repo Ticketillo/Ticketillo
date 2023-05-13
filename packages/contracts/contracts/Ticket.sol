@@ -24,8 +24,8 @@ contract Ticket is ERC721Tradable {
         value = _value;
     }
 
-    function baseTokenURI() override public pure returns (string memory) {
-        return "ipfs://QmW8fmRyeNvdAP2KXP9oNB3BjMVVpTzHJkPk8MPhCWHjE5/";
+    function baseTokenURI() override public view returns (string memory) {
+        return baseURI;
     }
 
     function exists(uint256 tokenId) public view virtual returns (bool) {
@@ -42,5 +42,12 @@ contract Ticket is ERC721Tradable {
 
     function soldOut() public view virtual returns (bool) {
         return tokenIdCounter.current() == value;
+    }
+
+    function getValue() public view virtual returns (uint256) {
+        return value;
+    }
+    function getSupply() public view virtual returns (uint256) {
+        return supply;
     }
 }

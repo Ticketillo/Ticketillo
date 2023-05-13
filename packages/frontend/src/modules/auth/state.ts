@@ -3,6 +3,7 @@ import { createStore } from "zustand/vanilla";
 
 export type IAuthState = {
     isLoggedIn: boolean;
+    address?: string;
 };
 
 export const authState = createStore<IAuthState>(() => ({

@@ -6,7 +6,5 @@ import UserMenuDropdown from "./UserMenuDropdown";
 export default function UserMenu() {
     const { isLoggedIn } = useAuthState();
 
-    const logged = true;
-
-    return <div>{logged ? <UserMenuDropdown /> : <UserAuthForm />}</div>;
+    return <div>{isLoggedIn ? <UserMenuDropdown /> : <UserAuthForm />}</div>;
 }
