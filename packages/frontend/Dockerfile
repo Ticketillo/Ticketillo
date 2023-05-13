@@ -27,5 +27,8 @@ RUN echo " \
         location /api/ {  \
             proxy_pass http://backend; \
         } \
+        location /file/ {  \
+            proxy_pass http://backend; \
+        } \
     }" > /etc/nginx/templates/default.conf.template
 COPY --from=build /app/build /var/www
