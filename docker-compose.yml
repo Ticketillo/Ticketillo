@@ -17,7 +17,9 @@ services:
             dockerfile: Dockerfile
         restart: always
         environment:
-            CONFIG_ENV: staging
+            CONFIG_ENV: production
+        volumes:
+            - ./data:/app/data
     http:
         build:
             context: ./packages/frontend/
