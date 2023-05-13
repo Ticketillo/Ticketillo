@@ -10,6 +10,7 @@ import EventPage from "modules/event/pages/EventPage";
 import MyEventsPage from "modules/event/pages/MyEventsPage";
 import DiscoverPage from "modules/event/pages/DiscoverPage";
 import TicketsPage from "modules/ticket/pages/TicketsPage";
+import LoggedInRoute from "modules/auth/components/LoggedInRoute";
 
 const Routes = () => {
     return useRoutes([
@@ -23,7 +24,11 @@ const Routes = () => {
                 },
                 {
                     path: "your-events",
-                    element: <MyEventsPage />,
+                    element: (
+                        <LoggedInRoute>
+                            <MyEventsPage />
+                        </LoggedInRoute>
+                    ),
                 },
                 {
                     path: "discover",
@@ -33,7 +38,11 @@ const Routes = () => {
         },
         {
             path: "/profile",
-            element: <ProfilePage />,
+            element: (
+                <LoggedInRoute>
+                    <ProfilePage />
+                </LoggedInRoute>
+            ),
         },
         {
             path: "/event/:id",
@@ -41,7 +50,11 @@ const Routes = () => {
         },
         {
             path: "/tickets",
-            element: <TicketsPage />,
+            element: (
+                <LoggedInRoute>
+                    <TicketsPage />
+                </LoggedInRoute>
+            ),
         },
     ]);
 };
