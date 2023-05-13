@@ -37,6 +37,10 @@ export const $EventDto = {
             },
             isRequired: true,
         },
+        price: {
+            type: 'string',
+            isRequired: true,
+        },
         seats: {
             type: 'number',
             isRequired: true,

@@ -1,7 +1,7 @@
 import { EventDto, UserDto } from "models";
 import { EventAttributeDto } from "./api/models/EventAttributeDto";
 
-export interface IFullEventDto extends EventDto {
+export interface IFullEventDto extends Omit<EventDto, "price"> {
     seats: number;
     boughtSeats: number;
     seatPrice: string;

@@ -11,6 +11,7 @@ export class EventDto {
     external_url: string;
     image: string;
     attributes: EventAttributeDto[];
+    price: string;
     seats: number;
     user?: UserDto;
 
@@ -26,6 +27,7 @@ export class EventDto {
             image: info.image,
             attributes: info.attributes,
             seats: info.seats,
+            price: info.price,
             user: event.user ? UserDto.fromEntity(event.user) : undefined
         };
     }

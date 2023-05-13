@@ -103,7 +103,13 @@ const CreateEventModal = () => {
                     </div>
                 </div>
                 <div className={`${!(modalStep === 1) && "hidden"} flex flex-col justify-center gap-4 my-8`}>
-                    <TextInput onChange={(e) => setImage(e.target.files!)} label="Event image" name="eventImage" type="file" />
+                    <TextInput
+                        onChange={(e) => setImage(e.target.files!)}
+                        label="Event image"
+                        name="eventImage"
+                        type="file"
+                        accept="image/*"
+                    />
                     <TextInput
                         value={price}
                         onChange={(e) => setPrice(Number(e.target.value))}

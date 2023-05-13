@@ -12,7 +12,12 @@ export class EventService {
         const provider = Web3ProviderService.provider;
         const Ticket = new Ticket__factory(provider.getSigner());
         const ticket = Ticket.attach(eventDto.address);
-        return FullEventDto.fromEventDto(eventDto, (await ticket.getSupply()).toNumber(), (await ticket.tokenIdCounter()).toNumber(), "10");
+        return FullEventDto.fromEventDto(
+            eventDto,
+            (await ticket.getSupply()).toNumber(),
+            (await ticket.tokenIdCounter()).toNumber(),
+            eventDto.price,
+        );
     }
 
     static async createEvent(
@@ -35,6 +40,7 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
+                price: seatPrice,
                 attributes: [
                     {
                         trait_type: "location",
