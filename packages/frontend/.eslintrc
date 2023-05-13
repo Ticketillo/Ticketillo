@@ -27,7 +27,8 @@
                 "caughtErrorsIgnorePattern": "^_"
             }
         ],
-        "@typescript-eslint/no-var-requires": 0
+        "@typescript-eslint/no-var-requires": 0,
+        "prettier/prettier": 0
     },
     "parserOptions": {
         "ecmaFeatures": {
