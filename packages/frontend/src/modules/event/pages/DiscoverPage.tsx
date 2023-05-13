@@ -11,7 +11,7 @@ export default function DiscoverPage() {
             {isLoading ? (
                 Array.from({ length: 10 }).map((_, index) => <Skeleton key={index} className="w-full h-64 rounded-lg" />)
             ) : events?.length === 0 ? (
-                <div>You have no events</div>
+                <div>There are no events yet, create one!</div>
             ) : (
                 events?.map((event, index: number) => (
                     <EventCard
