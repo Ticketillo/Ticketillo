@@ -16,8 +16,16 @@ export class EventController {
     @Post()
     @ApiOperation({ description: "Create an event" })
     async createEvent(request: CreateEventRequest): Promise<EventDto> {
+        if (request.id) {
+            const event = await this.eventRepository.findOne({ where: { id: request.id } });
+            event.address = request.address;
+            event.creatorAddress = request.creatorAddress;
+            event.name = request.name;
+            event.data = request.data;
+        }
         const event = await this.eventRepository.save({
             address: request.address,
+            creatorAddress: request.creatorAddress,
             name: request.name,
             data: request.data
         });

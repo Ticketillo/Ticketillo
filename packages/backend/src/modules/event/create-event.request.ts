@@ -2,6 +2,12 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateEventRequest {
     @ApiProperty({
+        name: "id",
+        type: "number",
+    })
+    id?: number;
+
+    @ApiProperty({
         name: "name",
         type: "string",
         required: true,
@@ -11,9 +17,15 @@ export class CreateEventRequest {
     @ApiProperty({
         name: "address",
         type: "string",
+    })
+    address?: string;
+
+    @ApiProperty({
+        name: "creator_address",
+        type: "string",
         required: true,
     })
-    address: string;
+    creatorAddress: string;
 
     @ApiProperty({
         name: "data",

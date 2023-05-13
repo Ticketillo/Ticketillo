@@ -8,8 +8,6 @@ dist/
 */**/dist/
 build/
 */**/build/
-data/
-*/**/data/
 logs/
 */**/logs/
 */**/*.log

@@ -4,6 +4,7 @@ import { EventAttributeDto } from "./event-attribute.dto";
 export class EventDto {
     id: number;
     address: string;
+    creatorAddress?: string;
     name: string;
     description: string;
     external_url: string;
@@ -16,6 +17,7 @@ export class EventDto {
             id: event.id,
             name: event.name,
             address: event.address,
+            creatorAddress: event.creatorAddress,
             description: info.description,
             external_url: info.external_url,
             image: info.image,
