@@ -1,115 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import { EventApi } from "../../../api/service";
+import { QueryResult } from "../../../query/react-query-overrides";
+import { EventDto } from "../../../models";
 
-export default function useGetDiscoverEvents(id: number | string | undefined) {
+export default function useGetDiscoverEvents(): QueryResult<EventDto[]> {
     return useQuery(
-        ["discover-events", id],
-        () => [
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "HackUPC",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-        ],
-        { enabled: id !== undefined },
+        ["discover-events",],
+        () => {
+            return EventApi.getAll()
+        },
+        { enabled: true },
     );
 }

@@ -1,6 +1,5 @@
 import { Event } from "../../database/entities/Event";
 import { EventAttributeDto } from "./event-attribute.dto";
-import { User } from "../../database/entities/User";
 import { UserDto } from "../user/user.dto";
 
 export class EventDto {
@@ -12,7 +11,8 @@ export class EventDto {
     external_url: string;
     image: string;
     attributes: EventAttributeDto[];
-    user?: User;
+    seats: number;
+    user?: UserDto;
 
     static fromEntity(event: Event): EventDto {
         const info = JSON.parse(event.data);
@@ -25,6 +25,7 @@ export class EventDto {
             external_url: info.external_url,
             image: info.image,
             attributes: info.attributes,
+            seats: info.seats,
             user: event.user ? UserDto.fromEntity(event.user) : undefined
         };
     }

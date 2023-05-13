@@ -2,7 +2,6 @@ import { EventDto } from "models";
 import { EventAttributeDto } from "./api/models/EventAttributeDto";
 
 export interface IFullEventDto extends EventDto {
-    seats?: number;
     boughtSeats?: number;
     seatPrice?: string;
 }
@@ -16,7 +15,7 @@ export class FullEventDto implements IFullEventDto {
     external_url: string;
     image: string;
     attributes: Array<EventAttributeDto>;
-    seats?: number;
+    seats: number;
     boughtSeats?: number;
     seatPrice?: string;
 

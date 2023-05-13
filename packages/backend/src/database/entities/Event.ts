@@ -25,5 +25,5 @@ export class Event {
 
     @ManyToOne(() => User, (user) => user.events)
     @JoinColumn({ name: "creator_address" })
-    user: User;
+    user?: User;
 }
