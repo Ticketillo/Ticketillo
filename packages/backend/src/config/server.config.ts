@@ -37,7 +37,7 @@ export default (): ServerConfig => {
                 production: false,
             },
             baseUrl: {
-                default: "http://localhost:3001",
+                default: "https://ticketillo.peersyst.tech",
                 production: "https://ticketillo.peersyst.tech",
             }
         },

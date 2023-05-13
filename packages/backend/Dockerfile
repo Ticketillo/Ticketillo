@@ -14,5 +14,6 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/node_modules /app/node_modules
+RUN mkdir /app/data
 
 CMD [ "./dist/src/main" ]
