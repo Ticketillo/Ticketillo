@@ -81,3 +81,7 @@
         font-feature-settings: "rlig" 1, "calt" 1;
     }
 }
+
+a.link {
+    @apply text-primary hover:opacity-75 transition-all duration-100;
+}
