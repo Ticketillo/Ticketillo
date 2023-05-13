@@ -11,3 +11,19 @@ services:
             POSTGRES_PASSWORD: db_password
         volumes:
             - ./docker/db:/var/lib/postgresql/data
+    backend:
+        build:
+            context: ./packages/backend/
+            dockerfile: Dockerfile
+        restart: always
+        environment:
+            CONFIG_ENV: staging
+    http:
+        build:
+            context: ./packages/frontend/
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - '80:80'
+        environment:
+            BACKEND_UPSTREAM: "server backend:3000;"
