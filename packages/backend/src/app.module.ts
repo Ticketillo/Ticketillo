@@ -8,6 +8,10 @@ import { APP_FILTER } from "@nestjs/core";
 import { CommandModule } from "nestjs-command";
 import { TypeORMSeederAdapter } from "./database/seeders/adapter";
 import { ErrorFilter } from "./modules/common/exception/error.filter";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { EventModule } from "./modules/event/event.module";
+import { UserModule } from "./modules/user/user.module";
+import { FileModule } from "./modules/file/file.module";
 
 @Module({
     imports: [
@@ -36,6 +40,13 @@ import { ErrorFilter } from "./modules/common/exception/error.filter";
                 } as TypeOrmModuleOptions;
             },
         }),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, "..", "data"),
+            serveRoot: "file"
+        }),
+        EventModule,
+        UserModule,
+        FileModule,
         CommandModule,
     ],
     providers: [TypeORMSeederAdapter, { provide: APP_FILTER, useClass: ErrorFilter }],

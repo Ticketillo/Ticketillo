@@ -62,6 +62,7 @@
         "@nestjs/jwt": "10.0.1",
         "@nestjs/passport": "9.0.2",
         "@nestjs/platform-express": "9.3.7",
+        "@nestjs/serve-static": "^3.0.1",
         "@nestjs/swagger": "~6.2.1",
         "@nestjs/typeorm": "^9.0.1",
         "bcrypt": "^5.1.0",
