@@ -20,7 +20,10 @@ export class Event {
     @Column({ type: "text" })
     data: string;
 
+    @Column({ name: "creator_address", type: "varchar", length: 255, nullable: true })
+    creatorAddress?: string;
+
     @ManyToOne(() => User, (user) => user.events)
-    @JoinColumn({ name: "user" })
+    @JoinColumn({ name: "creator_address" })
     user: User;
 }

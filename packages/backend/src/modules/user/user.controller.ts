@@ -1,5 +1,5 @@
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
-import { Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { ApiErrorDecorators } from "../common/exception/error-response.decorator";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -15,7 +15,7 @@ export class UserController {
 
     @Post()
     @ApiOperation({ description: "Create an event" })
-    async createEvent(request: EditUserRequest): Promise<UserDto> {
+    async createEvent(@Body() request: EditUserRequest): Promise<UserDto> {
         const user = await this.userRepository.findOne({ where: { address: request.address } });
         if (user) {
             user.name = request.name;
