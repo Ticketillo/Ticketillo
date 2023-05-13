@@ -21,8 +21,6 @@ export default function DiscoverPage() {
                         creator={event.user!.name}
                         description={event.description}
                         imgUrl={event.image}
-                        available={1}
-                        maxAttendees={event.seats}
                     />
                 ))
             )}
