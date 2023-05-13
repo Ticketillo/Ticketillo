@@ -41,8 +41,8 @@ import { FileModule } from "./modules/file/file.module";
             },
         }),
         ServeStaticModule.forRoot({
-            rootPath: join(__dirname, "..", "data"),
-            serveRoot: "file"
+            rootPath: join(__dirname, "../../data"),
+            serveRoot: "/file"
         }),
         EventModule,
         UserModule,
