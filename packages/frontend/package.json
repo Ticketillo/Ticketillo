@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "prebuild": "rimraf build",
-        "start": "npm run generate && craco start",
+        "start": "craco start",
         "build": "craco build",
         "eject": "craco eject",
         "generate": "npm run generate:openapi && npm run generate:icons && npm run generate:images",

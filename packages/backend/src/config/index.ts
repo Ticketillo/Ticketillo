@@ -1,5 +1,4 @@
 import { getNestTypeORMConfig } from "./typeorm.config";
-import loadAwsSecrets from "./util/loadAwsSecrets";
 import serverConfig from "./server.config";
 import loggerConfig from "./logger.config";
 
