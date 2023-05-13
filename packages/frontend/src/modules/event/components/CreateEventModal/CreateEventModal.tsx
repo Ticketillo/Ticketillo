@@ -76,7 +76,9 @@ const CreateEventModal = () => {
     return (
         <Dialog open={openModal}>
             <DialogTrigger>
-                <Button onClick={() => setOpenModal(true)}>Create event</Button>
+                <Button disabled onClick={() => setOpenModal(true)}>
+                    Create event
+                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>

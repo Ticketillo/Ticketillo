@@ -1,4 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
+import { EventApi } from "api/service";
+import { EventService } from "services/EventService";
 
 interface EventCreateParams {
     name: string | undefined;
@@ -11,9 +13,7 @@ interface EventCreateParams {
 }
 
 export default function useCreateEvent() {
-    const mock = async (data: EventCreateParams) => {
-        return data;
-    };
-
-    return useMutation((data: EventCreateParams) => mock(data));
+    return useMutation(({ name, description, date, attendees, image, price, location }: EventCreateParams) =>
+        EventApi.createEvent(_, name, description, image, _, attendees, price),
+    );
 }

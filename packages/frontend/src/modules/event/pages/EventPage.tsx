@@ -8,7 +8,7 @@ import { utils } from "ethers";
 import { Card, CardTitle } from "components/card";
 import useGetSimilarEvents from "../query/useGetSimilarEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "components/tooltip";
-import { EventService } from "../../../services/EventService";
+import BuyTicketModal from "../components/BuyTicketModal/BuyTicketModal";
 
 export default function EventPage() {
     const { id } = useParams();
@@ -70,19 +70,7 @@ export default function EventPage() {
                             </div>
                             <Progress value={progress} />
                         </div>
-                        <Button className="w-full" disabled={progress === 100}>
-                            {progress < 100 ? (
-                                <div className="flex gap-2 items-center">
-                                    <Ticket size="1.25rem" />
-                                    <span>Get a ticket!</span>
-                                </div>
-                            ) : (
-                                <div className="flex gap-2 items-center">
-                                    <Frown size="1.25rem" />
-                                    <span>Sold Out</span>
-                                </div>
-                            )}
-                        </Button>
+                        <BuyTicketModal progress={progress} />
                     </div>
                 </div>
             </div>
