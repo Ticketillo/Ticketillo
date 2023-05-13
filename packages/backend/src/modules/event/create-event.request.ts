@@ -27,7 +27,7 @@ export class CreateEventRequest {
         type: "string",
         required: true,
     })
-    creatorAddress: string;
+    creator_address: string;
 
     @ApiProperty({
         name: "data",

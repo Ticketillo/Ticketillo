@@ -11,8 +11,8 @@ export class Event {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @PrimaryColumn({ type: "varchar", length: 255 })
-    address: string;
+    @Column({ type: "varchar", length: 64, nullable: true })
+    address?: string;
 
     @Column({ type: "varchar", length: 64 })
     name: string;

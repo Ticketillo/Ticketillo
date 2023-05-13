@@ -6,30 +6,46 @@ import { Repository } from "typeorm";
 import { Event } from "../../database/entities/Event";
 import { EventDto } from "./event.dto";
 import { CreateEventRequest } from "./create-event.request";
+import { User } from "../../database/entities/User";
+import generateName from "../user/name-generator/generate-name";
 
 @ApiTags("event")
 @Controller("event")
 @ApiErrorDecorators()
 export class EventController {
-    constructor(@InjectRepository(Event) private readonly eventRepository: Repository<Event>) {}
+    constructor(@InjectRepository(Event) private readonly eventRepository: Repository<Event>,
+                @InjectRepository(User) private readonly userRepository: Repository<User>) {}
 
     @Post()
     @ApiOperation({ description: "Create an event" })
     async createEvent(@Body() request: CreateEventRequest): Promise<EventDto> {
+        const user = await this.userRepository.findOne({ where: { address: request.creator_address } });
+        if (!user) {
+            await this.userRepository.save({
+                address: request.address,
+                name: generateName(),
+                description: "",
+                image: "https://picsum.photos/200/300",
+            })
+        }
+        let event: any;
         if (request.id) {
-            const event = await this.eventRepository.findOne({ where: { id: request.id } });
+            event = await this.eventRepository.findOne({ where: { id: request.id } });
             event.address = request.address;
-            event.creatorAddress = request.creatorAddress;
+            event.creatorAddress = request.creator_address;
             event.name = request.name;
             event.data = request.data;
+            await this.eventRepository.save(event);
         }
-        const event = await this.eventRepository.save({
-            address: request.address,
-            creatorAddress: request.creatorAddress,
-            name: request.name,
-            data: request.data
-        });
-        return EventDto.fromEntity(event);
+        else {
+            event = await this.eventRepository.save({
+                address: request.address,
+                creatorAddress: request.creator_address,
+                name: request.name,
+                data: request.data
+            });
+        }
+        return this.getEvent(event.id)
     }
 
     @Get(":id")
