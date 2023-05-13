@@ -32,6 +32,8 @@ interface TicketInterface extends ethers.utils.Interface {
     "getChainId()": FunctionFragment;
     "getDomainSeperator()": FunctionFragment;
     "getNonce(address)": FunctionFragment;
+    "getSupply()": FunctionFragment;
+    "getValue()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "mint()": FunctionFragment;
     "mintTo(address,uint256)": FunctionFragment;
@@ -87,6 +89,8 @@ interface TicketInterface extends ethers.utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "getNonce", values: [string]): string;
+  encodeFunctionData(functionFragment: "getSupply", values?: undefined): string;
+  encodeFunctionData(functionFragment: "getValue", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [string, string]
@@ -174,6 +178,8 @@ interface TicketInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "getNonce", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getSupply", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getValue", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
@@ -358,6 +364,10 @@ export class Ticket extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber] & { nonce: BigNumber }>;
 
+    getSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getValue(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -486,6 +496,10 @@ export class Ticket extends BaseContract {
 
   getNonce(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+  getSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getValue(overrides?: CallOverrides): Promise<BigNumber>;
+
   isApprovedForAll(
     owner: string,
     operator: string,
@@ -605,6 +619,10 @@ export class Ticket extends BaseContract {
     getDomainSeperator(overrides?: CallOverrides): Promise<string>;
 
     getNonce(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    getSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getValue(overrides?: CallOverrides): Promise<BigNumber>;
 
     isApprovedForAll(
       owner: string,
@@ -819,6 +837,10 @@ export class Ticket extends BaseContract {
 
     getNonce(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    getSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getValue(overrides?: CallOverrides): Promise<BigNumber>;
+
     isApprovedForAll(
       owner: string,
       operator: string,
@@ -956,6 +978,10 @@ export class Ticket extends BaseContract {
       user: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    getSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getValue(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     isApprovedForAll(
       owner: string,
