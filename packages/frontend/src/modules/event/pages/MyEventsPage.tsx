@@ -6,7 +6,7 @@ export default function MyEventsPage() {
     const { data: events, isLoading } = useGetMyEvents("user");
 
     return (
-        <div className="w-full grid gap-4 grid-cols-2 md:grid-cols-3">
+        <div className="w-full grid gap-4 grid-cols-1 md:grid-cols-2">
             {isLoading ? (
                 <div>Loading..</div>
             ) : events?.length === 0 ? (

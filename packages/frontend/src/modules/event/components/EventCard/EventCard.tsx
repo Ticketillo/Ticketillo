@@ -1,4 +1,3 @@
-import { Badge } from "components/badge";
 import { Card, CardTitle } from "components/card";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "components/context-menu";
 import { Skeleton } from "components/skeleton";
@@ -22,11 +21,15 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading, maxAttende
         <ContextMenu>
             <ContextMenuTrigger>
                 <Card
-                    className="flex flex-row items-center justify-center transition-all hover:-translate-y-2 cursor-pointer p-4 gap-4"
+                    className="flex flex-row items-center justify-center transition-all hover:-translate-y-2 cursor-pointer p-4 gap-4 h-56"
                     onClick={() => navigation(`/event/${id}`)}
                 >
                     <div className="flex h-full w-full">
-                        {loading ? <Skeleton className="rounded-md w-full" /> : <img src={imgUrl} className="rounded-md w-full" />}
+                        {loading ? (
+                            <Skeleton className="rounded-md w-full" />
+                        ) : (
+                            <img src={imgUrl} className="rounded-md w-full object-cover" />
+                        )}
                     </div>
                     <div className="flex flex-col w-full justify-between h-full">
                         <div className="flex flex-col w-full gap-2">
@@ -37,19 +40,22 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading, maxAttende
                             <p className="text-fiord-600 text-sm">{description}</p>
                         </div>
 
-                        <div className="flex justify-between pt-10">
-                            <p className="text-fiord-600 text-xs">{maxAttendees} attendees</p>
+                        <div className="flex justify-end">
+                            <p className="text-fiord-500 font-semibold">1500 $</p>
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                            <p className="text-fiord-500 text-xs">
+                                <span className="font-semibold ">{maxAttendees} </span>
+                                attendees
+                            </p>
                             {!available ? (
-                                <div>
-                                    <Badge variant="destructive" className="hover:opacity-100">
-                                        <p>Sold</p>
-                                    </Badge>
+                                <div className="hover:opacity-100 flex items-center justify-center rounded-md border-red-500 p-1 border-2">
+                                    <p className="text-sm text-red-500">Sold</p>
                                 </div>
                             ) : (
-                                <div>
-                                    <Badge variant="default" className="hover:opacity-100 bg-fiord-600">
-                                        <p>Available</p>
-                                    </Badge>
+                                <div className="hover:opacity-100 flex items-center justify-center rounded-md border-fiord-500 p-1 border-2">
+                                    <p className="text-sm text-fiord-500">Available</p>
                                 </div>
                             )}
                         </div>

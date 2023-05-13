@@ -22,7 +22,7 @@ export default function useGetDiscoverEvents(id: number | string | undefined) {
             {
                 id: Math.random() + 1,
                 image: "https://picsum.photos/200/300",
-                name: "Tomorrowland",
+                name: "HackUPC",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
                 location: "Boom, Belgium",

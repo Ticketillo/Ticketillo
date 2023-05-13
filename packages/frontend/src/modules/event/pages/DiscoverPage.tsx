@@ -6,7 +6,7 @@ export default function DiscoverPage() {
     const { data: events, isLoading } = useGetDiscoverEvents("user");
 
     return (
-        <div className="w-full grid gap-4 grid-cols-2 md:grid-cols-3">
+        <div className="w-full grid gap-4 grid-cols-1 md:grid-cols-2">
             {isLoading ? (
                 <div>Loading..</div>
             ) : events?.length === 0 ? (

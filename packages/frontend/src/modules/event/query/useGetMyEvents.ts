@@ -6,7 +6,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
         () => [
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
@@ -21,7 +21,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
             },
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
@@ -36,7 +36,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
             },
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
@@ -51,7 +51,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
             },
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
@@ -66,7 +66,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
             },
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
@@ -81,7 +81,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
             },
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
@@ -96,7 +96,7 @@ export default function useGetMyEvents(id: number | string | undefined) {
             },
             {
                 id: Math.random() + 1,
-                image: "https://picsum.photos/200/300",
+                image: "https://picsum.photos/200",
                 name: "Tomorrowland",
                 description: "Tomorrowland is the biggest electronic music festival in the world.",
                 date: "2021-07-29T00:00:00.000Z",
