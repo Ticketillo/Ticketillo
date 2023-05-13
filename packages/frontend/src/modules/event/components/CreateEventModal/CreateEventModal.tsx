@@ -73,7 +73,7 @@ const CreateEventModal = () => {
     };
 
     return (
-        <Dialog open={openModal}>
+        <Dialog open={openModal} onOpenChange={setOpenModal}>
             <DialogTrigger>
                 <Button onClick={() => setOpenModal(true)}>Create event</Button>
             </DialogTrigger>
