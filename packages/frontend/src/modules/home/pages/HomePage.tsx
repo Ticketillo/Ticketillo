@@ -1,10 +1,12 @@
-import TabsNavigation from "../components/TabsNavigation";
 import { Outlet } from "react-router-dom";
+
+import TabsNavigation from "../components/TabsNavigation";
+import DashboardStats from "../components/DashboardStats";
 
 export default function HomePage() {
     return (
         <div className="w-full flex flex-col">
-            {/* {isLoggedIn && <DashboardStats />} */}
+            <DashboardStats />
 
             <TabsNavigation className="py-10" />
 

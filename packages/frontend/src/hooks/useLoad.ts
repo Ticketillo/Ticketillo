@@ -6,13 +6,18 @@ export default function useLoad() {
     const [loading, setloading] = useState(true);
     useEffect(() => {
         (async () => {
-            const { address } = await Web3ProviderService.connect();
-            authState.setState({
-                address,
-                isLoggedIn: true,
-            })
-            setloading(false);
+            try {
+                const { address } = await Web3ProviderService.connect();
+                authState.setState({
+                    address,
+                    isLoggedIn: true,
+                });
+                setloading(false);
+            } catch (e) {
+                console.error(e);
+                setloading(false);
+            }
         })();
-    })
+    });
     return loading;
 }
