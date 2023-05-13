@@ -7,7 +7,7 @@ export default function Logo() {
                 <AvatarImage src={`https://avatar.vercel.sh/1.png`} alt="Ticketillo logo" />
                 <AvatarFallback>TT</AvatarFallback>
             </Avatar>
-            <p>Ticketillo</p>
+            <p className="tracking-wide font-semibold text-lg">Ticketillo</p>
         </div>
     );
 }

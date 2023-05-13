@@ -1,9 +1,10 @@
 import { useAuthState } from "modules/auth/state";
 
-import { Button } from "components/button";
+import UserAuthForm from "./UserAuthForm";
+import UserMenuDropdown from "./UserMenuDropdown";
 
 export default function UserMenu() {
     const { isLoggedIn } = useAuthState();
 
-    return <div>{isLoggedIn ? <p>dalksddasdja</p> : <Button>Login</Button>}</div>;
+    return <div>{isLoggedIn ? <UserMenuDropdown /> : <UserAuthForm />}</div>;
 }
