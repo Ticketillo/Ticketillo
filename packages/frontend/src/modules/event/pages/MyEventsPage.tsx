@@ -21,8 +21,6 @@ export default function MyEventsPage() {
                         creator={event.creator}
                         description={event.description}
                         imgUrl={event.image}
-                        available={event.sold}
-                        maxAttendees={event.limit}
                     />
                 ))
             )}
