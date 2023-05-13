@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useGetEvent from "../query/useGetEvent";
-import { MapPin, Users, UserPlus, Calendar, Frown, Ticket } from "lucide-react";
+import { MapPin, Users, UserPlus, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Progress } from "components/progress";
 
