@@ -35,7 +35,9 @@ export default function useCreateEvent({ onSuccess }: UseCreateEventParams) {
             ),
         {
             onSuccess: async () => {
-                await queryClient.invalidateQueries(["my-events", "user"]);
+                await queryClient.invalidateQueries(["user"]);
+                await queryClient.invalidateQueries(["my-events"]);
+                await queryClient.invalidateQueries(["discover-events"]);
                 onSuccess?.();
             },
         },
