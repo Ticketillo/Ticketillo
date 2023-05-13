@@ -6,6 +6,8 @@ import "OpenApiConfig";
 import "polyfills";
 import useLoad from "hooks/useLoad";
 
+import "./styles/globals.css";
+
 const App = (): JSX.Element | null => {
     const loading = useLoad();
 
