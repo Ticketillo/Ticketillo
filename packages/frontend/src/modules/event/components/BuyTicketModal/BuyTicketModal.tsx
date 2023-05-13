@@ -74,7 +74,7 @@ const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
                         Cancel
                     </Button>
                     <Button variant="default" onClick={handleBuy}>
-                        {isLoading ? <Ring /> : "Confirm"}
+                        {isLoading ? <Ring color="white" /> : "Confirm"}
                     </Button>
                 </DialogFooter>
             </DialogContent>
