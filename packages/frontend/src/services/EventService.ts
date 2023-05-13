@@ -1,5 +1,5 @@
 import { EventDto } from "../models/api";
-import { EventApi, UserApi } from "../api/service";
+import { EventApi } from "../api/service";
 import { uploadFile } from "../api/service/helper/uploadFile";
 import { config } from "../config";
 import { Ticket__factory } from "./typechain";
@@ -10,11 +10,15 @@ import { formatEther } from "ethers/lib/utils";
 export class EventService {
     static async getEvent(id: number): Promise<FullEventDto> {
         const eventDto = await EventApi.getEvent(id);
-        const userDto = await UserApi.getUser(eventDto.creatorAddress!);
         const provider = await Web3ProviderService.provider;
         const Ticket = new Ticket__factory(await provider.getSigner());
-        await Ticket.attach(eventDto.address);
-        return FullEventDto.fromEventDto(eventDto, 50, 34, formatEther("10"), userDto);
+        const ticket = await Ticket.attach(eventDto.address);
+        return FullEventDto.fromEventDto(
+            eventDto,
+            (await ticket.getSupply()).toNumber(),
+            (await ticket.tokenIdCounter()).toNumber(),
+            formatEther("10"),
+        );
     }
 
     static async createEvent(
@@ -40,14 +44,15 @@ export class EventService {
 
         const metadataUrl = config.backendUrl + "/event/" + eventDto.id;
         const provider = await Web3ProviderService.provider;
-        const Ticket = new Ticket__factory(await provider.getSigner());
+        const signer = await provider.getSigner();
+        const Ticket = new Ticket__factory(signer);
         const ticket = await Ticket.deploy(metadataUrl, seats, seatPrice, name, "TKT", "0x0000000000000000000000000000000000000000");
         const address = ticket.address;
 
         return EventApi.createEvent({
             address,
             name: name,
-            creator_address: "",
+            creator_address: await signer.getAddress(),
             data: JSON.stringify({
                 description,
                 external_url: config.backendUrl,

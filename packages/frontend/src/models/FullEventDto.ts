@@ -5,7 +5,6 @@ export interface IFullEventDto extends EventDto {
     seats: number;
     boughtSeats: number;
     seatPrice: string;
-    creator: UserDto;
 }
 
 export class FullEventDto implements IFullEventDto {
@@ -22,13 +21,13 @@ export class FullEventDto implements IFullEventDto {
     seatPrice: string;
     creator: UserDto;
 
-    static fromEventDto(eventDto: EventDto, seats: number, boughtSeats: number, seatPrice: string, creator: UserDto): FullEventDto {
+    static fromEventDto(eventDto: EventDto, seats: number, boughtSeats: number, seatPrice: string): FullEventDto {
         return {
             ...eventDto,
             seats,
             boughtSeats,
             seatPrice,
-            creator,
+            creator: eventDto.user!,
         };
     }
 }
