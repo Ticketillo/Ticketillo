@@ -18,9 +18,8 @@ const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
     const { mutate: buyTicket } = useBuyTicket();
 
     const handleBuy = () => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { boughtSeats, seatPrice, ...eventRest } = event!;
-        buyTicket(eventRest);
+        const { boughtSeats: _boughtSeats, seatPrice, ...eventRest } = event!;
+        buyTicket({ ...eventRest, price: seatPrice });
     };
 
     return (
