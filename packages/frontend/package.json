@@ -8,7 +8,7 @@
         "build": "craco build",
         "eject": "craco eject",
         "generate": "npm run generate:openapi && npm run generate:icons && npm run generate:images",
-        "generate:icons": "node script/iconGenerator.js src/assets/icons/ src/components/icons/",
+        "generate:icons": "node script/iconGenerator.js src/assets/icons/ src/icons/",
         "generate:images": "node script/imagesGenerator.js src/assets/images/",
         "generate:openapi:services": "openapi -i ../backend/openapi-spec.json -o src/api/service --exportSchemas=true --exportModels=false --useUnionTypes --postfix=Api",
         "generate:openapi:models": "openapi -i ../backend/openapi-spec.json -o src/models/api --exportSchemas=false --useUnionTypes  --exportServices=false --exportCore=false",
