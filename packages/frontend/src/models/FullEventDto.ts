@@ -1,9 +1,10 @@
-import { EventDto } from "models";
+import { EventDto, UserDto } from "models";
 import { EventAttributeDto } from "./api/models/EventAttributeDto";
 
 export interface IFullEventDto extends EventDto {
-    boughtSeats?: number;
-    seatPrice?: string;
+    seats: number;
+    boughtSeats: number;
+    seatPrice: string;
 }
 
 export class FullEventDto implements IFullEventDto {
@@ -16,8 +17,9 @@ export class FullEventDto implements IFullEventDto {
     image: string;
     attributes: Array<EventAttributeDto>;
     seats: number;
-    boughtSeats?: number;
-    seatPrice?: string;
+    boughtSeats: number;
+    seatPrice: string;
+    creator: UserDto;
 
     static fromEventDto(eventDto: EventDto, seats: number, boughtSeats: number, seatPrice: string): FullEventDto {
         return {
@@ -25,6 +27,7 @@ export class FullEventDto implements IFullEventDto {
             seats,
             boughtSeats,
             seatPrice,
+            creator: eventDto.user!,
         };
     }
 }

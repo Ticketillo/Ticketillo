@@ -13,10 +13,23 @@ export class EventService {
         const provider = await Web3ProviderService.provider;
         const Ticket = new Ticket__factory(await provider.getSigner());
         const ticket = await Ticket.attach(eventDto.address);
-        return FullEventDto.fromEventDto(eventDto, (await ticket.getSupply()).toNumber(), (await ticket.tokenIdCounter()).toNumber(), formatEther("10"));
+        return FullEventDto.fromEventDto(
+            eventDto,
+            (await ticket.getSupply()).toNumber(),
+            (await ticket.tokenIdCounter()).toNumber(),
+            formatEther("10"),
+        );
     }
 
-    static async createEvent(creatorAddress: string, name: string, description: string, image: File, externalUrl: string, seats: number, seatPrice: string): Promise<EventDto> {
+    static async createEvent(
+        creatorAddress: string,
+        name: string,
+        description: string,
+        image: File,
+        externalUrl: string,
+        seats: number,
+        seatPrice: string,
+    ): Promise<EventDto> {
         const fileUrl = await uploadFile(image, "image");
         const eventDto = await EventApi.createEvent({
             name: name,
@@ -25,16 +38,16 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
-                attributes: []
+                attributes: [],
             }),
         });
 
         const metadataUrl = config.backendUrl + "/event/" + eventDto.id;
         const provider = await Web3ProviderService.provider;
-        const signer = await provider.getSigner()
+        const signer = await provider.getSigner();
         const Ticket = new Ticket__factory(signer);
         const ticket = await Ticket.deploy(metadataUrl, seats, seatPrice, name, "TKT", "0x0000000000000000000000000000000000000000");
-        const address = ticket.address
+        const address = ticket.address;
 
         return EventApi.createEvent({
             address,
@@ -44,7 +57,7 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
-                attributes: []
+                attributes: [],
             }),
         });
     }
