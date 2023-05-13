@@ -9,6 +9,7 @@ import EventPage from "modules/event/pages/EventPage";
 
 import MyEventsPage from "modules/event/pages/MyEventsPage";
 import DiscoverPage from "modules/event/pages/DiscoverPage";
+import TicketsPage from "modules/ticket/pages/TicketsPage";
 
 const Routes = () => {
     return useRoutes([
@@ -37,6 +38,10 @@ const Routes = () => {
         {
             path: "/event/:id",
             element: <EventPage />,
+        },
+        {
+            path: "/tickets",
+            element: <TicketsPage />,
         },
     ]);
 };
