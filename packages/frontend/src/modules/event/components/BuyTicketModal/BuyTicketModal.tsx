@@ -27,7 +27,14 @@ const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
         buyTicket(
             { ...eventRest, price: seatPrice },
             {
-                onSuccess: () => toast({ title: "Ticket bought!" }),
+                onSuccess: () => {
+                    setOpen(false);
+                    toast({ title: "Ticket bought!" });
+                },
+                onError: () => {
+                    setOpen(false);
+                    toast({ title: "Error buying ticket", variant: "destructive" });
+                },
             },
         );
     };

@@ -7,6 +7,7 @@ import { useState } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { Ring } from "@uiball/loaders";
 import useCreateEvent from "modules/event/query/useCreateEvent";
+import { useToast } from "components/use-toast";
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
@@ -59,6 +60,7 @@ const CreateEventModal = () => {
     const [location, setLocation] = useState<string>("");
 
     const { mutate: createEvent, isLoading } = useCreateEvent();
+    const { toast } = useToast();
 
     const handleCreate = () => {
         const data = {
@@ -69,7 +71,16 @@ const CreateEventModal = () => {
             image: image![0],
             location,
         };
-        createEvent(data, { onSuccess: () => setOpenModal(false), onError: () => setOpenModal(false) });
+        createEvent(data, {
+            onSuccess: () => {
+                toast({ title: "Event created!" });
+                setOpenModal(false);
+            },
+            onError: () => {
+                toast({ title: "Event creation failed!", variant: "destructive" });
+                setOpenModal(false);
+            },
+        });
     };
 
     return (
