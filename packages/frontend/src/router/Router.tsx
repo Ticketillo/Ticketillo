@@ -10,19 +10,24 @@ import Logo from "modules/home/components/Logo";
 import UserMenu from "modules/home/components/UserMenu";
 import EventPage from "modules/event/pages/PageEvent";
 
+import MyEventsPage from "modules/event/pages/MyEventsPage";
+import DiscoverPage from "modules/event/pages/DiscoverPage";
+
 const Routes = () => {
     return useRoutes([
         {
             path: "/",
             element: <HomePage />,
-        },
-        {
-            path: "/your-events",
-            element: <HomePage />,
-        },
-        {
-            path: "/discover",
-            element: <HomePage />,
+            children: [
+                {
+                    path: "your-events",
+                    element: <MyEventsPage />,
+                },
+                {
+                    path: "discover",
+                    element: <DiscoverPage />,
+                },
+            ],
         },
         {
             path: "/profile",

@@ -22,27 +22,23 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading, maxAttende
         <ContextMenu>
             <ContextMenuTrigger>
                 <Card
-                    className="flex flex-row items-center justify-center transition-all hover:-translate-y-2 cursor-pointer p-8 gap-4"
+                    className="flex flex-row items-center justify-center transition-all hover:-translate-y-2 cursor-pointer p-4 gap-4"
                     onClick={() => navigation(`/event/${id}`)}
                 >
-                    <div className="flex flex-col h-full w-full">
-                        {loading ? (
-                            <Skeleton className="rounded-md w-full h-36" />
-                        ) : (
-                            <img src={imgUrl} className={`rounded-md h-36 w-full`} />
-                        )}
+                    <div className="flex h-full w-full">
+                        {loading ? <Skeleton className="rounded-md w-full" /> : <img src={imgUrl} className="rounded-md w-full" />}
                     </div>
-                    <div className="flex flex-col w-full h-36 justify-between">
+                    <div className="flex flex-col w-full justify-between h-full">
                         <div className="flex flex-col w-full gap-2">
-                            <CardTitle className="flex flex-row gap-2">
-                                <h4>{name}</h4>
-                                <p className="text-fiord-400 font-normal"> · {creator}</p>
+                            <CardTitle className="flex gap-2 flex-col">
+                                <p>{name}</p>
+                                <p className="text-fiord-400 text-sm">{creator}</p>
                             </CardTitle>
-                            <h6 className="text-fiord-600">{description}</h6>
+                            <p className="text-fiord-600 text-sm">{description}</p>
                         </div>
 
-                        <div className="flex flex-row justify-between">
-                            <h6 className="text-fiord-600">{maxAttendees} attendees</h6>
+                        <div className="flex justify-between pt-10">
+                            <p className="text-fiord-600 text-xs">{maxAttendees} attendees</p>
                             {!available ? (
                                 <div>
                                     <Badge variant="destructive" className="hover:opacity-100">
