@@ -59,8 +59,16 @@ const CreateEventModal = () => {
     const [image, setImage] = useState<FileList>();
     const [location, setLocation] = useState<string>("");
 
-    const { mutate: createEvent, isLoading } = useCreateEvent();
     const { toast } = useToast();
+
+    const handleSuccess = () => {
+        toast({ title: "Event created!" });
+        setOpenModal(false);
+    };
+
+    const { mutate: createEvent, isLoading } = useCreateEvent({
+        onSuccess: handleSuccess,
+    });
 
     const handleCreate = () => {
         const data = {
@@ -71,16 +79,7 @@ const CreateEventModal = () => {
             image: image![0],
             location,
         };
-        createEvent(data, {
-            onSuccess: () => {
-                toast({ title: "Event created!" });
-                setOpenModal(false);
-            },
-            onError: () => {
-                toast({ title: "Event creation failed!", variant: "destructive" });
-                setOpenModal(false);
-            },
-        });
+        createEvent(data);
     };
 
     return (
