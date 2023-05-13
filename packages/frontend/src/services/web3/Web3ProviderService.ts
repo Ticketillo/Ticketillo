@@ -9,7 +9,7 @@ export class Web3ProviderService {
         throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async getConnectedAccount(): Promise<{ address: string; chain: number }> {
+    static async getConnectedAccount(): Promise<{ address: string }> {
         const ethereum = (window as any).ethereum;
 
         if (ethereum) {
@@ -18,14 +18,15 @@ export class Web3ProviderService {
             try {
                 return {
                     address: await signer.getAddress(),
-                    chain: provider.network.chainId,
                 };
-            } catch (e) {}
+            } catch (e) {
+                console.log(e);
+            }
         }
         throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async connect(): Promise<{ address: string; chain: number }> {
+    static async connect(): Promise<{ address: string; }> {
         const ethereum = (window as any).ethereum;
 
         if (ethereum) {
@@ -36,7 +37,6 @@ export class Web3ProviderService {
                 const network = await provider.getNetwork();
                 return {
                     address: await signer.getAddress(),
-                    chain: network.chainId,
                 };
             } catch (e) {
                 throw new Error("USER_REJECTED_METAMASK");

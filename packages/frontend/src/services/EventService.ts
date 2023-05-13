@@ -31,14 +31,15 @@ export class EventService {
 
         const metadataUrl = config.backendUrl + "/event/" + eventDto.id;
         const provider = await Web3ProviderService.provider;
-        const Ticket = new Ticket__factory(await provider.getSigner());
+        const signer = await provider.getSigner()
+        const Ticket = new Ticket__factory(signer);
         const ticket = await Ticket.deploy(metadataUrl, seats, seatPrice, name, "TKT", "0x0000000000000000000000000000000000000000");
         const address = ticket.address
 
         return EventApi.createEvent({
             address,
             name: name,
-            creator_address: "",
+            creator_address: await signer.getAddress(),
             data: JSON.stringify({
                 description,
                 external_url: config.backendUrl,
