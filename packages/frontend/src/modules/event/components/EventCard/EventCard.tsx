@@ -2,7 +2,6 @@ import { Badge } from "components/badge";
 import { Card, CardTitle } from "components/card";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "components/context-menu";
 import { Skeleton } from "components/skeleton";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export interface EventCardProps {
