@@ -8,12 +8,13 @@ interface EventCreateParams {
     attendees: number;
     image: File;
     price: number;
+    location: string;
 }
 
 export default function useCreateEvent() {
     const { address } = useAuthState();
 
-    return useMutation(({ name, description, attendees, image, price }: EventCreateParams) =>
-        EventService.createEvent(address!, name, description, image, "", attendees, price.toString()),
+    return useMutation(({ name, description, attendees, image, price, location }: EventCreateParams) =>
+        EventService.createEvent(address!, name, description, image, "", attendees, price.toString(), location),
     );
 }

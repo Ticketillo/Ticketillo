@@ -29,6 +29,7 @@ export class EventService {
         externalUrl: string,
         seats: number,
         seatPrice: string,
+        location: string,
     ): Promise<EventDto> {
         const fileUrl = await uploadFile(image, "image");
         const provider = await Web3ProviderService.provider;
@@ -40,7 +41,10 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
-                attributes: [],
+                attributes: [{
+                    trait_type: "location",
+                    value: location,
+                }],
             }),
         });
 
@@ -58,7 +62,10 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
-                attributes: [],
+                attributes: [{
+                    trait_type: "location",
+                    value: location,
+                }],
             }),
         });
     }
