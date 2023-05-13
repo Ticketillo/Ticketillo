@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
 
-
 export class Web3ProviderService {
     static get provider(): ethers.providers.Web3Provider {
         if ((window as any).ethereum) {
@@ -26,7 +25,7 @@ export class Web3ProviderService {
         throw new Error("METAMASK_NOT_INSTALLED");
     }
 
-    static async connect(): Promise<{ address: string; }> {
+    static async connect(): Promise<{ address: string }> {
         const ethereum = (window as any).ethereum;
 
         if (ethereum) {

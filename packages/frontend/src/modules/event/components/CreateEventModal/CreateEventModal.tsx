@@ -70,7 +70,7 @@ const CreateEventModal = () => {
             location,
             date,
         };
-        createEvent(data);
+        createEvent(data, { onSuccess: () => setOpenModal(false) });
     };
 
     return (
