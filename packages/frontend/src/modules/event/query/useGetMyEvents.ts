@@ -1,115 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { EventApi } from "../../../api/service";
 
 export default function useGetMyEvents(id: number | string | undefined) {
     return useQuery(
         ["my-events", id],
-        () => [
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-            {
-                id: Math.random() + 1,
-                image: "https://picsum.photos/200",
-                name: "Tomorrowland",
-                description: "Tomorrowland is the biggest electronic music festival in the world.",
-                date: "2021-07-29T00:00:00.000Z",
-                location: "Boom, Belgium",
-                user: {
-                    id: 1,
-                    name: "John Doe",
-                },
-                limit: 10000,
-                sold: 5000,
-                creator: "John Doe",
-            },
-        ],
+        async () => {
+            return (await EventApi.getAll()).filter((event) => event.id === id);
+        },
         { enabled: id !== undefined },
     );
 }
