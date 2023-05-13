@@ -3,11 +3,11 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { config } from "config";
 
 import HomePage from "modules/home/pages/HomePage";
-import { eventRouter } from "modules/event/EventRouter";
 
 import Logo from "modules/home/components/Logo";
 import UserMenu from "modules/home/components/UserMenu";
 import EventPage from "modules/event/pages/PageEvent";
+import EventScreen from "../modules/event/pages/EventScreen";
 
 const Routes = () => {
     return useRoutes([
@@ -15,7 +15,10 @@ const Routes = () => {
             path: "/",
             element: <HomePage />,
         },
-        ...eventRouter,
+        {
+            path: "/event",
+            element: <EventScreen />,
+        },
         {
             path: "/event/:id",
             element: <EventPage />,
