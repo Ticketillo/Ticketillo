@@ -161,8 +161,8 @@ const CreateEventModal = () => {
                         {modalStep === 0 ? "Cancel" : "Back"}
                     </Button>
                     <Button variant="default" onClick={!confirm ? handleNext : handleCreate}>
-                        {confirm ? "Confirm" : "Next"}
-                        {isLoading && <Ring size={20} />}
+                        {!isLoading && (confirm ? "Confirm" : "Next")}
+                        {isLoading && <Ring size={20} color="white" />}
                     </Button>
                 </DialogFooter>
             </DialogContent>
