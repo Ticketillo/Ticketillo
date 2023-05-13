@@ -2,7 +2,7 @@ FROM node:16.13.0 as base
 WORKDIR /app
 COPY ["package.json", "yarn.lock", "./"]
 
-FROM test as build
+FROM base as build
 ARG CONFIG_ENV=production
 ENV REACT_APP_CONFIG_ENV ${CONFIG_ENV}
 RUN DISABLE_ESLINT_PLUGIN=true yarn build
