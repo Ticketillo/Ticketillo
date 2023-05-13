@@ -36,7 +36,7 @@ contract Ticket is ERC721Tradable {
         require(msg.value >= value, "Not enough amount sent");
         require(!soldOut(), "ticket sold out");
         tokenIdCounter.increment();
-        mintTo(msg.sender, tokenIdCounter.current());
+        _mint(msg.sender, tokenIdCounter.current());
         return tokenIdCounter.current();
     }
 

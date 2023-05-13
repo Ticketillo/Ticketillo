@@ -64,6 +64,7 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
+                price: seatPrice,
                 attributes: [
                     {
                         trait_type: "location",
@@ -78,6 +79,6 @@ export class EventService {
         const provider = await Web3ProviderService.provider;
         const Ticket = new Ticket__factory(await provider.getSigner());
         const ticket = await Ticket.attach(eventDto.address);
-        await ticket.mint();
+        await ticket.mint({ gasLimit: 300000, value: eventDto.price });
     }
 }
