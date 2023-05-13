@@ -1,14 +1,37 @@
 import { Button } from "components/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "components/dialog";
+import { Frown, Ticket } from "lucide-react";
 import { useState } from "react";
 
-const BuyTicketModal = () => {
+interface BuyTicketModalProps {
+    progress: number;
+}
+
+const BuyTicketModal = ({ progress }: BuyTicketModalProps) => {
     const [open, setOpen] = useState(false);
 
     return (
         <Dialog open={open} onOpenChange={() => setOpen(false)}>
             <DialogTrigger>
-                <Button variant="default">Buy now</Button>
+                <Button
+                    className="w-full"
+                    disabled={progress === 100}
+                    onClick={() => {
+                        setOpen(true);
+                    }}
+                >
+                    {progress < 100 ? (
+                        <div className="flex gap-2 items-center">
+                            <Ticket size="1.25rem" />
+                            <span>Get a ticket!</span>
+                        </div>
+                    ) : (
+                        <div className="flex gap-2 items-center">
+                            <Frown size="1.25rem" />
+                            <span>Sold Out</span>
+                        </div>
+                    )}
+                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>

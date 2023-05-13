@@ -50,12 +50,12 @@ const CreateEventModal = () => {
 
     const confirm = modalStep + 1 === maxSteps;
 
-    const [name, setName] = useState<string>();
-    const [description, setDescription] = useState<string>();
-    const [attendees, setAttendees] = useState<number>();
+    const [name, setName] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
+    const [attendees, setAttendees] = useState<number>(0);
     const [date, setDate] = useState<Date>();
-    const [price, setPrice] = useState<number>();
-    const [image, setImage] = useState("");
+    const [price, setPrice] = useState<number>(0);
+    const [image, setImage] = useState<FileList>();
     const [location, setLocation] = useState<string>();
 
     const { mutate: createEvent } = useCreateEvent();
@@ -66,9 +66,7 @@ const CreateEventModal = () => {
             description,
             attendees,
             price,
-            image,
-            location,
-            date,
+            image: image![0],
         };
         createEvent(data, { onSuccess: () => setOpenModal(false) });
     };
@@ -104,7 +102,7 @@ const CreateEventModal = () => {
                     </div>
                 </div>
                 <div className={`${!(modalStep === 1) && "hidden"} flex flex-col justify-center gap-4 my-8`}>
-                    <TextInput value={image} onChange={(e) => setImage(e.target.value)} label="Event image" name="eventImage" type="file" />
+                    <TextInput onChange={(e) => setImage(e.target.files!)} label="Event image" name="eventImage" type="file" />
                     <TextInput
                         value={price}
                         onChange={(e) => setPrice(Number(e.target.value))}

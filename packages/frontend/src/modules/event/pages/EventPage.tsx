@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
 import useGetEvent from "../query/useGetEvent";
-import { MapPin, Users, UserPlus, Calendar, Ticket, Frown } from "lucide-react";
+import { MapPin, Users, UserPlus, Calendar, Frown, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Progress } from "components/progress";
-import { Button } from "components/button";
+
 import { utils } from "ethers";
 import { Card, CardTitle } from "components/card";
 import useGetSimilarEvents from "../query/useGetSimilarEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "components/tooltip";
-import { EventService } from "../../../services/EventService";
+import { Button } from "components/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "components/dialog";
+import { useState } from "react";
 
 export default function EventPage() {
     const { id } = useParams();
@@ -19,6 +21,8 @@ export default function EventPage() {
     const progress = event ? Math.ceil((event?.boughtSeats / event?.seats) * 100) : 0;
     const location = event?.attributes.find((attr) => attr.trait_type === "location")?.value;
     const date = event?.attributes.find((attr) => attr.trait_type === "date")?.value;
+
+    const [open, setOpen] = useState(false);
 
     return (
         <div className="flex w-full flex-col gap-10">
@@ -70,19 +74,38 @@ export default function EventPage() {
                             </div>
                             <Progress value={progress} />
                         </div>
-                        <Button className="w-full" disabled={progress === 100}>
-                            {progress < 100 ? (
-                                <div className="flex gap-2 items-center">
-                                    <Ticket size="1.25rem" />
-                                    <span>Get a ticket!</span>
-                                </div>
-                            ) : (
-                                <div className="flex gap-2 items-center">
-                                    <Frown size="1.25rem" />
-                                    <span>Sold Out</span>
-                                </div>
-                            )}
-                        </Button>
+                        <Dialog open={open} defaultOpen={false} onOpenChange={() => setOpen(false)}>
+                            <DialogTrigger>
+                                <Button className="w-full" disabled={progress === 100} onClick={() => setOpen(true)}>
+                                    {progress < 100 ? (
+                                        <div className="flex gap-2 items-center">
+                                            <Ticket size="1.25rem" />
+                                            <span>Get a ticket!</span>
+                                        </div>
+                                    ) : (
+                                        <div className="flex gap-2 items-center">
+                                            <Frown size="1.25rem" />
+                                            <span>Sold Out</span>
+                                        </div>
+                                    )}
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Buy this ticket</DialogTitle>
+                                    <DialogDescription>Confirm this action to buy a ticket for this event.</DialogDescription>
+                                </DialogHeader>
+                                <div className="flex flex-col w-full">Accept message</div>
+                                <DialogFooter>
+                                    <Button variant="outline" onClick={() => setOpen(false)}>
+                                        Cancel
+                                    </Button>
+                                    <Button variant="default" onClick={() => undefined}>
+                                        Confirm
+                                    </Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
             </div>
