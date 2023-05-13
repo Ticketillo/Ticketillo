@@ -37,5 +37,8 @@ export const $EventDto = {
             },
             isRequired: true,
         },
+        user: {
+            type: 'User',
+        },
     },
 } as const;
