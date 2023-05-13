@@ -50,7 +50,7 @@ export class EventService {
             }),
         });
 
-        const metadataUrl = config.backendUrl + "/event/" + eventDto.id;
+        const metadataUrl = config.backendUrl + "/api/event/" + eventDto.id + "/";
         const Ticket = new Ticket__factory(signer);
         const ticket = await Ticket.deploy(metadataUrl, seats, seatPrice, name, "TKT", "0x0000000000000000000000000000000000000000");
         const address = ticket.address;
