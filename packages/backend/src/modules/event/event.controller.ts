@@ -45,12 +45,19 @@ export class EventController {
                 data: request.data
             });
         }
-        return this.getEvent(event.id, "")
+        return this.getEvent(event.id)
     }
 
     @Get(":id/:token")
     @ApiOperation({ description: "Get an event" })
-    async getEvent(@Param("id") id: number, @Param("token") token: string): Promise<EventDto> {
+    async getEventToken(@Param("id") id: number, @Param("token") token: string): Promise<EventDto> {
+        const event = await this.eventRepository.findOne({ where: { id }, relations: ["user"] });
+        return EventDto.fromEntity(event);
+    }
+
+    @Get(":id")
+    @ApiOperation({ description: "Get an event" })
+    async getEvent(@Param("id") id: number): Promise<EventDto> {
         const event = await this.eventRepository.findOne({ where: { id }, relations: ["user"] });
         return EventDto.fromEntity(event);
     }
