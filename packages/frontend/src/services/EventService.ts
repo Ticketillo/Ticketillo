@@ -5,20 +5,14 @@ import { config } from "../config";
 import { Ticket__factory } from "./typechain";
 import { FullEventDto } from "../models";
 import { Web3ProviderService } from "./web3/Web3ProviderService";
-import { formatEther } from "ethers/lib/utils";
 
 export class EventService {
     static async getEvent(id: number): Promise<FullEventDto> {
         const eventDto = await EventApi.getEvent(id);
-        const provider = await Web3ProviderService.provider;
-        const Ticket = new Ticket__factory(await provider.getSigner());
-        const ticket = await Ticket.attach(eventDto.address);
-        return FullEventDto.fromEventDto(
-            eventDto,
-            (await ticket.getSupply()).toNumber(),
-            (await ticket.tokenIdCounter()).toNumber(),
-            formatEther("10"),
-        );
+        const provider = Web3ProviderService.provider;
+        const Ticket = new Ticket__factory(provider.getSigner());
+        const ticket = Ticket.attach(eventDto.address);
+        return FullEventDto.fromEventDto(eventDto, (await ticket.getSupply()).toNumber(), (await ticket.tokenIdCounter()).toNumber(), "10");
     }
 
     static async createEvent(
@@ -41,10 +35,12 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
-                attributes: [{
-                    trait_type: "location",
-                    value: location,
-                }],
+                attributes: [
+                    {
+                        trait_type: "location",
+                        value: location,
+                    },
+                ],
             }),
         });
 
@@ -62,10 +58,12 @@ export class EventService {
                 description,
                 external_url: config.backendUrl,
                 image: fileUrl,
-                attributes: [{
-                    trait_type: "location",
-                    value: location,
-                }],
+                attributes: [
+                    {
+                        trait_type: "location",
+                        value: location,
+                    },
+                ],
             }),
         });
     }

@@ -7,7 +7,7 @@ export default function useGetSimilarEvents(id: number | string | undefined) {
         ["events"],
         async () => {
             const events = await EventApi.getAll();
-            return shuffle(events).slice(0, 3);
+            return shuffle(events).slice(0, 4);
         },
         { enabled: id !== undefined },
     );
