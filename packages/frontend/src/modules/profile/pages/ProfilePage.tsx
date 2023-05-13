@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "components/avatar";
 import { UserApi } from "../../../api/service";
 import { useAuthState } from "../../auth/state";
 import { useQueryClient } from "@tanstack/react-query";
+import { uploadFile } from "../../../api/service/helper/uploadFile";
 
 export default function ProfilePage() {
     const { register, handleSubmit } = useForm();
@@ -16,11 +17,12 @@ export default function ProfilePage() {
     const qc = useQueryClient();
 
     const onSubmit = async (data: any) => {
+        const url = await uploadFile(data.avatar[0], "image");
         await UserApi.createEvent({
             address: authState.address!,
             name: data.name,
             description: data.description,
-            image: data.avatar[0]
+            image: url,
         });
         await qc.invalidateQueries(["user"]);
     };
