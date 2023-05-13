@@ -28,7 +28,7 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading }: EventCar
                             {loading ? (
                                 <Skeleton className="rounded-md w-full" />
                             ) : (
-                                <img src={imgUrl} className="rounded-md w-full object-cover" />
+                                <img src={imgUrl} className="rounded-md w-full object-cover" alt="image" />
                             )}
                         </div>
                         <div className="flex flex-col justify-between h-full flex-1 overflow-hidden">
