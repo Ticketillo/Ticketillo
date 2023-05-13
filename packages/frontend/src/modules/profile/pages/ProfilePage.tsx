@@ -6,13 +6,23 @@ import { Label } from "components/label";
 import { Input } from "components/input";
 import { Textarea } from "components/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "components/avatar";
+import { UserApi } from "../../../api/service";
+import { useAuthState } from "../../auth/state";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProfilePage() {
     const { register, handleSubmit } = useForm();
+    const authState = useAuthState();
+    const qc = useQueryClient();
 
-    const onSubmit = (data: any) => {
-        // edit user information
-        console.log(data);
+    const onSubmit = async (data: any) => {
+        await UserApi.createEvent({
+            address: authState.address!,
+            name: data.name,
+            description: data.description,
+            image: data.avatar[0]
+        });
+        await qc.invalidateQueries(["user"]);
     };
 
     return (
