@@ -58,7 +58,7 @@ const CreateEventModal = () => {
     const [image, setImage] = useState<FileList>();
     const [location, setLocation] = useState<string>("");
 
-    const { mutate: createEvent } = useCreateEvent();
+    const { mutate: createEvent, isLoading } = useCreateEvent();
 
     const handleCreate = () => {
         const data = {
@@ -69,7 +69,7 @@ const CreateEventModal = () => {
             image: image![0],
             location,
         };
-        createEvent(data, { onSuccess: () => setOpenModal(false) });
+        createEvent(data, { onSuccess: () => setOpenModal(false), onError: () => setOpenModal(false) });
     };
 
     return (
@@ -151,6 +151,7 @@ const CreateEventModal = () => {
                     </Button>
                     <Button variant="default" onClick={!confirm ? handleNext : handleCreate}>
                         {confirm ? "Confirm" : "Next"}
+                        {isLoading && <Ring size={20} />}
                     </Button>
                 </DialogFooter>
             </DialogContent>

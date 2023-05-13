@@ -2,6 +2,7 @@ import { Ring } from "@uiball/loaders";
 import { Button } from "components/button";
 import { Card, CardTitle } from "components/card";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "components/dialog";
+import { useToast } from "components/use-toast";
 import { utils } from "ethers";
 import { Frown, Ticket } from "lucide-react";
 import { FullEventDto } from "models";
@@ -16,15 +17,23 @@ interface BuyTicketModalProps {
 const BuyTicketModal = ({ progress, event }: BuyTicketModalProps) => {
     const [open, setOpen] = useState(false);
 
+    const { toast } = useToast();
+
     const { mutate: buyTicket, isLoading } = useBuyTicket();
 
     const handleBuy = () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { boughtSeats: _boughtSeats, seatPrice, ...eventRest } = event!;
-        buyTicket({ ...eventRest, price: seatPrice });
+        buyTicket(
+            { ...eventRest, price: seatPrice },
+            {
+                onSuccess: () => toast({ title: "Ticket bought!" }),
+            },
+        );
     };
 
     return (
-        <Dialog open={open}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
                 <Button className="w-full" disabled={progress === 100} onClick={() => setOpen(true)}>
                     {progress < 100 ? (
