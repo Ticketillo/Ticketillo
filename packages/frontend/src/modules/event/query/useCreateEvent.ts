@@ -8,7 +8,7 @@ interface EventCreateParams {
     description: string;
     attendees: number;
     image: File;
-    price: number;
+    price: string;
     location: string;
 }
 

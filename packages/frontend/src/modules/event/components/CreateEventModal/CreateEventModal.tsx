@@ -54,11 +54,11 @@ const CreateEventModal = () => {
     const [description, setDescription] = useState<string>("");
     const [attendees, setAttendees] = useState<number>(0);
     const [date, setDate] = useState<Date>();
-    const [price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState("");
     const [image, setImage] = useState<FileList>();
     const [location, setLocation] = useState<string>("");
 
-    const { mutate: createEvent } = useCreateEvent();
+    const { mutate: createEvent, isLoading } = useCreateEvent();
 
     const handleCreate = () => {
         const data = {
@@ -69,7 +69,7 @@ const CreateEventModal = () => {
             image: image![0],
             location,
         };
-        createEvent(data, { onSuccess: () => setOpenModal(false) });
+        createEvent(data, { onSuccess: () => setOpenModal(false), onError: () => setOpenModal(false) });
     };
 
     return (
@@ -103,20 +103,8 @@ const CreateEventModal = () => {
                     </div>
                 </div>
                 <div className={`${!(modalStep === 1) && "hidden"} flex flex-col justify-center gap-4 my-8`}>
-                    <TextInput
-                        onChange={(e) => setImage(e.target.files!)}
-                        label="Event image"
-                        name="eventImage"
-                        type="file"
-                        accept="image/*"
-                    />
-                    <TextInput
-                        value={price}
-                        onChange={(e) => setPrice(Number(e.target.value))}
-                        label="Ticket price"
-                        name="price"
-                        type="text"
-                    />
+                    <TextInput onChange={(e) => setImage(e.target.files!)} label="Event image" name="eventImage" type="file" />
+                    <TextInput value={price} onChange={(e) => setPrice(e.target.value)} label="Ticket price" name="price" type="text" />
                     <PlacesAutocomplete value={location} onChange={(e) => setLocation(e)} onSelect={(e) => setLocation(e)}>
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <div className="flex flex-col gap-2">
@@ -163,6 +151,7 @@ const CreateEventModal = () => {
                     </Button>
                     <Button variant="default" onClick={!confirm ? handleNext : handleCreate}>
                         {confirm ? "Confirm" : "Next"}
+                        {isLoading && <Ring size={20} />}
                     </Button>
                 </DialogFooter>
             </DialogContent>

@@ -16,6 +16,10 @@ export default function SpaceSwitcher() {
 
     const { data } = useGetUser(address);
 
+    const handleClickMyTickets = () => {
+        window.open(`https://testnet.rarible.com/user/${address}`, "_blank");
+    };
+
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
@@ -35,15 +39,15 @@ export default function SpaceSwitcher() {
                     <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-[200px] p-2">
+            <DropdownMenuContent align="end" className="w-[220px] p-2">
                 <DropdownMenuGroup>
-                    <DropdownMenuItem onSelect={() => navigate("/profile")}>
+                    <DropdownMenuItem onSelect={() => navigate("/profile")} className="cursor-pointer">
                         <User className="mr-2 h-4 w-4" />
                         My profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => navigate("/tickets")}>
+                    <DropdownMenuItem onSelect={handleClickMyTickets} className="cursor-pointer">
                         <Ticket className="mr-2 h-4 w-4" />
-                        My tickets
+                        See my tickets in Rarible
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
             </DropdownMenuContent>

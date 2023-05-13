@@ -18,7 +18,7 @@ export default function MyEventsPage() {
                         key={`${event.id}-${index}`}
                         id={event.id}
                         name={event.name}
-                        creator={event.creator}
+                        creator={event.user!.name}
                         description={event.description}
                         imgUrl={event.image}
                         price={"0"}
