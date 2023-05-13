@@ -41,10 +41,12 @@ const EventCard = ({ id, name, description, creator, imgUrl, loading, price }: E
                                     </div>
                                     <p className="text-fiord-400 text-sm">{creator}</p>
                                 </CardTitle>
-                                <p className="text-fiord-600 text-sm">{description}</p>
+                                <p className="text-fiord-600 text-xs lg:text-sm">
+                                    {description.slice(0, 50) + (description.length > 50 ? "..." : "")}
+                                </p>
                             </div>
 
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center flex-wrap gap-1">
                                 <div className="hover:opacity-100 flex items-center justify-center rounded-md border-fiord-500 p-1 border-2">
                                     <p className="text-sm text-fiord-500">Available</p>
                                 </div>
