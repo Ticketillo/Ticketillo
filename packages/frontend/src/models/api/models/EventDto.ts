@@ -14,6 +14,7 @@ export type EventDto = {
     external_url: string;
     image: string;
     attributes: Array<EventAttributeDto>;
+    price: string;
     seats: number;
     user?: UserDto;
 };
