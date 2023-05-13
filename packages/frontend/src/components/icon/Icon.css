@@ -1,0 +1,15 @@
+.icon * {
+    stroke: none;
+}
+
+.icon *[fill]:not([fill="none"]) {
+    fill: currentColor;
+}
+
+.icon *[stroke]:not([stroke="none"]) {
+    stroke: currentColor;
+
+    &:not([fill]) {
+        fill: none;
+    }
+}
