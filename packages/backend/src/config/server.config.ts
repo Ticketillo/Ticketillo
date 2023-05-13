@@ -8,6 +8,7 @@ interface ServerConfig {
     encryptionKey: string;
     enableSwagger: boolean;
     enableCors: boolean;
+    baseUrl: string;
 }
 
 export default (): ServerConfig => {
@@ -35,6 +36,9 @@ export default (): ServerConfig => {
                 default: true,
                 production: false,
             },
+            baseUrl: {
+                default: "http://localhost:3001",
+            }
         },
         {
             port: validPort,
