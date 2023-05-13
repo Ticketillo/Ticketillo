@@ -13,7 +13,7 @@ export class EventService {
         const provider = await Web3ProviderService.provider;
         const Ticket = new Ticket__factory(await provider.getSigner());
         const ticket = await Ticket.attach(eventDto.address);
-        return FullEventDto.fromEventDto(eventDto, 50, 34, formatEther("10"));
+        return FullEventDto.fromEventDto(eventDto, (await ticket.getSupply()).toNumber(), (await ticket.tokenIdCounter()).toNumber(), formatEther("10"));
     }
 
     static async createEvent(creatorAddress: string, name: string, description: string, image: File, externalUrl: string, seats: number, seatPrice: string): Promise<EventDto> {
